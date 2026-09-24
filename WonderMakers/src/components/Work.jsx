@@ -42,11 +42,7 @@ const SECONDARY_PROJECTS = [
 ]
 
 function Work() {
-  const [activeCardId, setActiveCardId] = useState(null)
-
-  const handleCardToggle = (id) => {
-    setActiveCardId((prev) => (prev === id ? null : id))
-  }
+  const [hoveredCardId, setHoveredCardId] = useState(null)
 
   return (
     <section className="wm-work-section" id="work">
@@ -66,11 +62,9 @@ function Work() {
 
         {/* Feature Project Showcase Card (AVAX) */}
         <div
-          className={`wm-featured-card ${activeCardId === 'avax' ? 'is-active' : ''}`}
-          onMouseEnter={() => setActiveCardId('avax')}
-          onMouseLeave={() => setActiveCardId(null)}
-          onClick={() => handleCardToggle('avax')}
-          tabIndex={0}
+          className={`wm-featured-card ${hoveredCardId === 'avax' ? 'is-active' : ''}`}
+          onMouseEnter={() => setHoveredCardId('avax')}
+          onMouseLeave={() => setHoveredCardId(null)}
         >
           <div className="wm-card-media-wrap">
             <img
@@ -105,11 +99,9 @@ function Work() {
           {SECONDARY_PROJECTS.map((project) => (
             <article
               key={project.id}
-              className={`wm-grid-card ${activeCardId === project.id ? 'is-active' : ''}`}
-              onMouseEnter={() => setActiveCardId(project.id)}
-              onMouseLeave={() => setActiveCardId(null)}
-              onClick={() => handleCardToggle(project.id)}
-              tabIndex={0}
+              className={`wm-grid-card ${hoveredCardId === project.id ? 'is-active' : ''}`}
+              onMouseEnter={() => setHoveredCardId(project.id)}
+              onMouseLeave={() => setHoveredCardId(null)}
             >
               <div className="wm-grid-card-media">
                 <img

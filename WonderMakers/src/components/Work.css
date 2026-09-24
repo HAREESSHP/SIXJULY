@@ -179,10 +179,8 @@
 
 .wm-featured-card:hover .wm-card-hover-action,
 .wm-featured-card.is-active .wm-card-hover-action,
-.wm-featured-card:active .wm-card-hover-action,
 .wm-grid-card:hover .wm-card-hover-action,
-.wm-grid-card.is-active .wm-card-hover-action,
-.wm-grid-card:active .wm-card-hover-action {
+.wm-grid-card.is-active .wm-card-hover-action {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
   pointer-events: auto;
@@ -463,33 +461,6 @@
   .wm-grid-card.is-active {
     border-color: rgba(204, 255, 0, 0.45);
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5), 0 0 25px rgba(204, 255, 0, 0.15);
-  }
-}
-
-/* Touch & Tablet Screens (ensure action button is visible and reactive on tap) */
-@media (hover: none) {
-  .wm-card-hover-action {
-    opacity: 0.85;
-    transform: translate(-50%, -50%) scale(0.88);
-    pointer-events: auto;
-  }
-
-  .wm-featured-card.is-active .wm-card-hover-action,
-  .wm-featured-card:active .wm-card-hover-action,
-  .wm-grid-card.is-active .wm-card-hover-action,
-  .wm-grid-card:active .wm-card-hover-action {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    background: var(--accent-lime);
-    color: #000000;
-    box-shadow: 0 0 24px var(--accent-lime-glow);
-  }
-
-  .wm-featured-card.is-active .wm-card-hover-action svg,
-  .wm-featured-card:active .wm-card-hover-action svg,
-  .wm-grid-card.is-active .wm-card-hover-action svg,
-  .wm-grid-card:active .wm-card-hover-action svg {
-    stroke: #000000;
   }
 }
 

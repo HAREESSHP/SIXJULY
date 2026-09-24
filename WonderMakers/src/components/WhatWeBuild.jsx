@@ -141,13 +141,19 @@ function WhatWeBuild() {
     const lastCard = cards[lastIndex]
     const lastCardStickyTop = BASE_TOP + lastIndex * HEADER_OFFSET
 
-    const updateStack = () => {
-      if (window.innerWidth <= 960) {
-        for (let i = 0; i < cards.length; i++) {
-          if (cards[i].style.transform) cards[i].style.transform = ''
-        }
-        return
+    const getLayoutConfig = () => {
+      const w = window.innerWidth
+      if (w <= 480) {
+        return { baseTop: 66, headerOffset: 46 }
+      } else if (w <= 960) {
+        return { baseTop: 74, headerOffset: 54 }
       }
+      return { baseTop: BASE_TOP, headerOffset: HEADER_OFFSET }
+    }
+
+    const updateStack = () => {
+      const { baseTop, headerOffset } = getLayoutConfig()
+      const lastCardStickyTop = baseTop + lastIndex * headerOffset
 
       // Calculate how far the final card has been pushed up past its sticky position
       const lastCardRect = lastCard.getBoundingClientRect()
@@ -216,7 +222,7 @@ function WhatWeBuild() {
               className={`wm-build-card ${service.theme === 'light' ? 'is-light' : ''}`}
               style={{
                 zIndex: index + 1,
-                top: `calc(${BASE_TOP}px + ${index * HEADER_OFFSET}px)`,
+                '--card-index': index,
               }}
             >
               <div className="wm-bcard-header">

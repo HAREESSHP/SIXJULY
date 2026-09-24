@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import avaxVisual from '../assets/projects/avax-visual.png'
 import dimensoVisual from '../assets/projects/dimenso-visual.png'
 import sphereVisual from '../assets/projects/sphere-visual.png'
@@ -41,6 +42,12 @@ const SECONDARY_PROJECTS = [
 ]
 
 function Work() {
+  const [activeCardId, setActiveCardId] = useState(null)
+
+  const handleCardToggle = (id) => {
+    setActiveCardId((prev) => (prev === id ? null : id))
+  }
+
   return (
     <section className="wm-work-section" id="work">
       {/* Background Atmosphere */}
@@ -58,7 +65,13 @@ function Work() {
         </div>
 
         {/* Feature Project Showcase Card (AVAX) */}
-        <div className="wm-featured-card">
+        <div
+          className={`wm-featured-card ${activeCardId === 'avax' ? 'is-active' : ''}`}
+          onMouseEnter={() => setActiveCardId('avax')}
+          onMouseLeave={() => setActiveCardId(null)}
+          onClick={() => handleCardToggle('avax')}
+          tabIndex={0}
+        >
           <div className="wm-card-media-wrap">
             <img
               src={avaxVisual}
@@ -80,6 +93,7 @@ function Work() {
               target="_blank"
               rel="noopener noreferrer"
               className="wm-card-badge"
+              onClick={(e) => e.stopPropagation()}
             >
               Company Website
             </a>
@@ -89,7 +103,14 @@ function Work() {
         {/* 2x2 Secondary Projects Grid */}
         <div className="wm-projects-grid">
           {SECONDARY_PROJECTS.map((project) => (
-            <article key={project.id} className="wm-grid-card">
+            <article
+              key={project.id}
+              className={`wm-grid-card ${activeCardId === project.id ? 'is-active' : ''}`}
+              onMouseEnter={() => setActiveCardId(project.id)}
+              onMouseLeave={() => setActiveCardId(null)}
+              onClick={() => handleCardToggle(project.id)}
+              tabIndex={0}
+            >
               <div className="wm-grid-card-media">
                 <img
                   src={project.image}
@@ -110,6 +131,7 @@ function Work() {
                   href={project.link}
                   className="wm-card-badge"
                   onClick={(e) => {
+                    e.stopPropagation()
                     if (project.link === '#') e.preventDefault()
                   }}
                 >

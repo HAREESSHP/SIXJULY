@@ -156,6 +156,8 @@
    ========================================================================== */
 
 .wm-build-right {
+  --base-top: 92px;
+  --header-offset: 88px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -164,6 +166,7 @@
 
 .wm-build-card {
   position: sticky;
+  top: calc(var(--base-top) + var(--card-index, 0) * var(--header-offset));
   width: 100%;
   background-color: #07070a;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -347,15 +350,20 @@
     max-width: 100%;
   }
 
-  .wm-build-card {
-    position: static !important;
-    transform: none !important;
-    margin-bottom: 24px;
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.25);
+  .wm-build-right {
+    --base-top: 74px;
+    --header-offset: 54px;
+    padding-bottom: 50px;
   }
 
-  .wm-build-right {
-    padding-bottom: 0;
+  .wm-build-card {
+    position: sticky;
+    margin-bottom: 50px;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.35), 0 20px 55px rgba(0, 0, 0, 0.45);
+  }
+
+  .wm-build-card:last-child {
+    margin-bottom: 0;
   }
 
   .wm-ticker-viewport {
@@ -372,10 +380,20 @@
     padding: 0 16px;
   }
 
+  .wm-build-right {
+    --base-top: 70px;
+    --header-offset: 50px;
+    padding-bottom: 40px;
+  }
+
   .wm-build-card {
     padding: 20px 18px 22px;
     border-radius: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+  }
+
+  .wm-build-card:last-child {
+    margin-bottom: 0;
   }
 
   .wm-bcard-title {
@@ -408,9 +426,20 @@
     line-height: 1.55;
   }
 
+  .wm-build-right {
+    --base-top: 66px;
+    --header-offset: 46px;
+    padding-bottom: 30px;
+  }
+
   .wm-build-card {
     padding: 16px 14px 18px;
     border-radius: 16px;
+    margin-bottom: 30px;
+  }
+
+  .wm-build-card:last-child {
+    margin-bottom: 0;
   }
 
   .wm-bcard-header {

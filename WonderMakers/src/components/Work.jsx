@@ -66,6 +66,11 @@ function Work() {
               className="wm-card-image"
               loading="lazy"
             />
+            <div className="wm-card-hover-action" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </div>
           </div>
 
           <div className="wm-card-bottom-bar">
@@ -92,6 +97,11 @@ function Work() {
                   className="wm-grid-card-img"
                   loading="lazy"
                 />
+                <div className="wm-card-hover-action" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
+                </div>
               </div>
 
               <div className="wm-grid-card-bottom-bar">

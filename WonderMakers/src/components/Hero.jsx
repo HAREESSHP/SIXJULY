@@ -23,15 +23,21 @@ function Hero() {
         {/* Main Headline */}
         <div className="wm-hero-headline-wrap">
           <h1 className="wm-hero-title">
-            <span className="wm-title-row">DIGITAL PRODUCTS</span>
-            <span className="wm-title-row">FOR WHAT'S NEXT</span>
+            <span className="wm-title-mask">
+              <span className="wm-title-row row-1">DIGITAL PRODUCTS</span>
+            </span>
+            <span className="wm-title-mask">
+              <span className="wm-title-row row-2">FOR WHAT'S NEXT</span>
+            </span>
           </h1>
         </div>
 
         {/* Subtitle */}
-        <p className="wm-hero-subtitle">
-          AI changed what's possible. Great products still need taste, judgment and engineering. We bring all three together.
-        </p>
+        <div className="wm-subtitle-mask">
+          <p className="wm-hero-subtitle">
+            AI changed what's possible. Great products still need taste, judgment and engineering. We bring all three together.
+          </p>
+        </div>
 
         {/* Circular Neon Lime Scroll Down Button */}
         <button
@@ -139,6 +145,10 @@ function Hero() {
 
       {/* Floating Brands Marquee directly inside Hero */}
       <div className="wm-hero-brands-wrap" id="clients">
+        <div className="wm-brands-header">
+          <h2 className="wm-brands-title">TRUSTED BY GLOBAL LEADERS</h2>
+        </div>
+
         {/* Row 1 - Scrolling Left */}
         <div className="wm-marquee-row">
           <div className="wm-marquee-track scroll-left">

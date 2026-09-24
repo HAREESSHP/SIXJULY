@@ -108,14 +108,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 14px 40px rgba(212, 255, 0, 0.48))
-    drop-shadow(0 6px 18px rgba(0, 0, 0, 0.28));
+  filter: drop-shadow(0 14px 40px rgba(212, 255, 0, 0.48)) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.28));
   transition: filter 0.35s ease;
 }
 
 .wm-studio-badge-wrapper:hover .wm-studio-center-badge {
-  filter: drop-shadow(0 20px 55px rgba(212, 255, 0, 0.72))
-    drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(0 20px 55px rgba(212, 255, 0, 0.72)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
 }
 
 .wm-studio-badge-svg {
@@ -232,13 +230,11 @@
 
 /* Card 3: Dark Olive to Vibrant Lime Gradient (20+) */
 .wm-bento-gradient {
-  background: linear-gradient(
-    135deg,
-    #0a1002 0%,
-    #1d2d00 35%,
-    #709900 75%,
-    #a8dc00 100%
-  );
+  background: linear-gradient(135deg,
+      #0a1002 0%,
+      #1d2d00 35%,
+      #709900 75%,
+      #a8dc00 100%);
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
@@ -445,6 +441,99 @@
 
   .wm-bento-label {
     font-size: 0.76rem;
+    line-height: 1.3;
+  }
+}
+}
+
+.wm-bento-num {
+  font-size: clamp(2.8rem, 6vw, 3.6rem);
+}
+
+.wm-studio-line-1 {
+  font-size: clamp(2.8rem, 12vw, 5.5rem);
+}
+
+.wm-studio-line-2 {
+  font-size: clamp(3.2rem, 15vw, 6.8rem);
+}
+
+.wm-studio-subtext-container {
+  max-width: 620px;
+  margin-top: 18px;
+}
+
+.wm-studio-subtext {
+  font-size: clamp(0.96rem, 1.8vw, 1.12rem);
+  line-height: 1.62;
+}
+}
+
+@media (max-width: 640px) {
+  .wm-studio-line-1 {
+    font-size: clamp(2.2rem, 11vw, 3.8rem);
+  }
+
+  .wm-studio-line-2 {
+    font-size: clamp(2.5rem, 13.5vw, 4.6rem);
+  }
+
+  .wm-studio-center-badge {
+    width: clamp(84px, 19vw, 130px);
+    height: clamp(84px, 19vw, 130px);
+  }
+
+  .wm-studio-subtext-container {
+    padding: 0 12px;
+    margin-top: 14px;
+  }
+
+  .wm-studio-subtext {
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+
+  .wm-studio-4slots-grid {
+    gap: 12px;
+  }
+
+  .wm-bento-card {
+    border-radius: 18px;
+  }
+
+  .wm-bento-stat {
+    padding: 18px 14px;
+  }
+
+  .wm-bento-num {
+    font-size: clamp(2.2rem, 8.5vw, 2.8rem);
+  }
+
+  .wm-bento-label {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-studio-line-1 {
+    font-size: clamp(1.85rem, 10vw, 2.8rem);
+  }
+
+  .wm-studio-line-2 {
+    font-size: clamp(2.15rem, 12.5vw, 3.4rem);
+  }
+
+  .wm-studio-subtext {
+    font-size: 0.9rem;
+    line-height: 1.54;
+  }
+
+  .wm-bento-num {
+    font-size: 2rem;
+  }
+
+  .wm-bento-label {
+    font-size: 0.74rem;
     line-height: 1.3;
   }
 }

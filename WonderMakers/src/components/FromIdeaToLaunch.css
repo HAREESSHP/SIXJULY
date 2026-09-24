@@ -116,6 +116,8 @@
    ========================================================================== */
 
 .wm-launch-right {
+  --base-top: 96px;
+  --header-offset: 84px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -124,6 +126,7 @@
 
 .wm-launch-card {
   position: sticky;
+  top: calc(var(--base-top) + var(--card-index, 0) * var(--header-offset));
   width: 100%;
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.09);
@@ -256,7 +259,7 @@
 }
 
 /* ==========================================================================
-   Responsive Adaptations
+   Responsive Adaptations (Stacking Cards Preserved on Mobile)
    ========================================================================== */
 
 @media (max-width: 960px) {
@@ -278,15 +281,20 @@
     max-width: 100%;
   }
 
-  .wm-launch-card {
-    position: static !important;
-    transform: none !important;
-    margin-bottom: 24px;
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.15);
+  .wm-launch-right {
+    --base-top: 74px;
+    --header-offset: 52px;
+    padding-bottom: 50px;
   }
 
-  .wm-launch-right {
-    padding-bottom: 0;
+  .wm-launch-card {
+    position: sticky;
+    margin-bottom: 50px;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.08), 0 20px 50px rgba(0, 0, 0, 0.14);
+  }
+
+  .wm-launch-card:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -299,10 +307,20 @@
     padding: 0 16px;
   }
 
+  .wm-launch-right {
+    --base-top: 70px;
+    --header-offset: 48px;
+    padding-bottom: 40px;
+  }
+
   .wm-launch-card {
     padding: 20px 18px 22px;
     border-radius: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+  }
+
+  .wm-launch-card:last-child {
+    margin-bottom: 0;
   }
 
   .wm-launch-card-title {
@@ -333,9 +351,20 @@
     margin-bottom: 20px;
   }
 
+  .wm-launch-right {
+    --base-top: 66px;
+    --header-offset: 44px;
+    padding-bottom: 30px;
+  }
+
   .wm-launch-card {
     padding: 16px 14px 18px;
     border-radius: 16px;
+    margin-bottom: 32px;
+  }
+
+  .wm-launch-card:last-child {
+    margin-bottom: 0;
   }
 
   .wm-launch-card-header {

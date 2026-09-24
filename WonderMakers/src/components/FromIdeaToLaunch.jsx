@@ -31,7 +31,7 @@ const BASE_TOP = 96
 function FromIdeaToLaunch() {
   const rightColRef = useRef(null)
 
-  // Synchronize card exit so all stacked cards move together as one locked unit
+  // Synchronize card exit so all stacked cards move together as one locked unit on all screen sizes
   useEffect(() => {
     const container = rightColRef.current
     if (!container) return
@@ -41,15 +41,20 @@ function FromIdeaToLaunch() {
 
     const lastIndex = cards.length - 1
     const lastCard = cards[lastIndex]
-    const lastCardStickyTop = BASE_TOP + lastIndex * HEADER_OFFSET
+
+    const getLayoutConfig = () => {
+      const w = window.innerWidth
+      if (w <= 480) {
+        return { baseTop: 68, headerOffset: 46 }
+      } else if (w <= 960) {
+        return { baseTop: 74, headerOffset: 52 }
+      }
+      return { baseTop: BASE_TOP, headerOffset: HEADER_OFFSET }
+    }
 
     const updateStack = () => {
-      if (window.innerWidth <= 960) {
-        for (let i = 0; i < cards.length; i++) {
-          if (cards[i].style.transform) cards[i].style.transform = ''
-        }
-        return
-      }
+      const { baseTop, headerOffset } = getLayoutConfig()
+      const lastCardStickyTop = baseTop + lastIndex * headerOffset
 
       const lastCardRect = lastCard.getBoundingClientRect()
       const pushUp = Math.max(0, lastCardStickyTop - lastCardRect.top)
@@ -107,7 +112,7 @@ function FromIdeaToLaunch() {
               className="wm-launch-card"
               style={{
                 zIndex: index + 1,
-                top: `calc(${BASE_TOP}px + ${index * HEADER_OFFSET}px)`,
+                '--card-index': index,
               }}
             >
               <div className="wm-launch-card-header">

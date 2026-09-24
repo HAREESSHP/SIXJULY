@@ -112,11 +112,11 @@ function SeniorLedStudio() {
       },
       {
         root: null,
-        threshold: 0.28,
+        threshold: 0.15,
       }
     )
 
-    observer.observe(section)
+    observer.observe(container)
 
     return () => {
       window.removeEventListener('resize', handleResize)

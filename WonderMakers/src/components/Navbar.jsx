@@ -5,15 +5,27 @@ function Navbar() {
   const [theme, setTheme] = useState('light')
   const [activeLink, setActiveLink] = useState('Home')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
   }, [theme])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const navItems = ['Home', 'Work', 'Services', 'About', 'Wonder Games']
 
   return (
-    <header className="wm-navbar-wrapper">
-      <div className="wm-navbar-glow"></div>
+    <div className={`wm-navbar-outer ${isScrolled ? 'scrolled' : ''}`}>
+      <header className="wm-navbar-wrapper">
+        <div className="wm-navbar-glow"></div>
 
       <div className="wm-navbar-container">
         <a href="#home" className="wm-brand">
@@ -54,7 +66,10 @@ function Navbar() {
                     <path d="M12 0L14.6 9.4L24 12L14.6 14.6L12 24L9.4 14.6L0 12L9.4 9.4L12 0Z" />
                   </svg>
                 )}
-                <span>{item}</span>
+                <span className="wm-nav-text-track">
+                  <span className="wm-nav-text primary">{item}</span>
+                  <span className="wm-nav-text secondary">{item}</span>
+                </span>
               </a>
             )
           })}
@@ -127,7 +142,8 @@ function Navbar() {
           </a>
         </div>
       )}
-    </header>
+      </header>
+    </div>
   )
 }
 

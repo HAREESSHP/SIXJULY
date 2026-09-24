@@ -1,13 +1,75 @@
+import { useEffect, useRef, useState } from 'react'
 import './Footer.css'
 
+const TYPING_PHRASES = ["LET’S TALK", "LET’S WORK TOGETHER"]
+
 function Footer() {
+  const footerRef = useRef(null)
+  const [isInView, setIsInView] = useState(false)
+  const [phraseIndex, setPhraseIndex] = useState(0)
+  const [typedText, setTypedText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  // Start typing when footer scrolls into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+      { threshold: 0.15 }
+    )
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!isInView) return
+
+    const currentPhrase = TYPING_PHRASES[phraseIndex % TYPING_PHRASES.length]
+    let timeout
+
+    if (!isDeleting) {
+      if (typedText.length < currentPhrase.length) {
+        timeout = setTimeout(() => {
+          setTypedText(currentPhrase.slice(0, typedText.length + 1))
+        }, 115)
+      } else {
+        // Hold phrase so user can comfortably read it
+        timeout = setTimeout(() => {
+          setIsDeleting(true)
+        }, 2200)
+      }
+    } else {
+      if (typedText.length > 0) {
+        timeout = setTimeout(() => {
+          setTypedText(currentPhrase.slice(0, typedText.length - 1))
+        }, 55)
+      } else {
+        // Move to next phrase after delete
+        setIsDeleting(false)
+        setPhraseIndex((prev) => (prev + 1) % TYPING_PHRASES.length)
+      }
+    }
+
+    return () => clearTimeout(timeout)
+  }, [isInView, typedText, isDeleting, phraseIndex])
+
   return (
-    <footer className="wm-footer" id="contact">
+    <footer className="wm-footer" id="contact" ref={footerRef}>
       <div className="wm-footer-container">
         {/* Top Hero CTA: WANT TO COLLABORATE? LET'S TALK */}
         <div className="wm-footer-hero">
           <span className="wm-footer-eyebrow">WANT TO COLLABORATE?</span>
-          <h2 className="wm-footer-title">LET’S TALK</h2>
+          <h2 className="wm-footer-title" aria-label={TYPING_PHRASES[phraseIndex % TYPING_PHRASES.length]}>
+            <span className="wm-footer-typed-text">{typedText}</span>
+            <span className="wm-footer-cursor" aria-hidden="true" />
+          </h2>
 
           <a
             href="mailto:team@wondermakers.digital?subject=Project%20Inquiry"
@@ -162,6 +224,25 @@ function Footer() {
             <span className="wm-footer-meta-tag">ICO: 17844576</span>
             <span className="wm-footer-meta-tag">DIC: CZ17844576</span>
           </div>
+        </div>
+
+        {/* Creator Signature & Motto (Centered) */}
+        <div className="wm-footer-creator-wrap">
+          <p className="wm-footer-creator-motto">
+            THINK INNOVATE AND COLLABORATE
+          </p>
+          <p className="wm-footer-creator-dev">
+            DEVELOPED BY{' '}
+            <a
+              href="https://portfolio-site-hareesh.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wm-footer-creator-link"
+              title="Hareesh Bagayiti | Full Stack Developer & AI/ML Enthusiast"
+            >
+              HAREESH
+            </a>
+          </p>
         </div>
       </div>
     </footer>

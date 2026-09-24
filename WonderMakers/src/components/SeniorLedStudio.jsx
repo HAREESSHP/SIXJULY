@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState, useCallback } from 'react'
 import studioDog from '../assets/projects/studio-dog.jpg'
 import studioDev from '../assets/projects/studio-dev.jpg'
 import studioNeon from '../assets/projects/studio-neon.jpg'
@@ -43,8 +44,89 @@ function YellowStickerStar() {
 }
 
 function SeniorLedStudio() {
+  const sectionRef = useRef(null)
+  const bentoRef = useRef(null)
+  const [isThrown, setIsThrown] = useState(false)
+
+  // Calculate dynamic coordinate deltas so all 8 cards collapse into 1 single centered card on any screen size
+  const computeOffsets = useCallback(() => {
+    const container = bentoRef.current
+    if (!container) return
+    const cards = container.querySelectorAll('.wm-bento-card')
+    if (!cards.length) return
+
+    const contW = container.offsetWidth
+    const contH = container.offsetHeight
+    const targetX = contW / 2
+    const targetY = contH / 2
+
+    // Organic deck rotations when stacked as one card
+    const deckRotations = [0, -3.2, 2.8, -2.1, 3.5, -1.8, 2.2, -1.2]
+
+    cards.forEach((card, index) => {
+      const cardMidX = card.offsetLeft + card.offsetWidth / 2
+      const cardMidY = card.offsetTop + card.offsetHeight / 2
+
+      const deltaX = Math.round(targetX - cardMidX)
+      const deltaY = Math.round(targetY - cardMidY)
+      const rot = deckRotations[index % deckRotations.length]
+
+      card.style.setProperty('--throw-x', `${deltaX}px`)
+      card.style.setProperty('--throw-y', `${deltaY}px`)
+      card.style.setProperty('--stack-rot', `${rot}deg`)
+      card.style.setProperty('--card-idx', index)
+    })
+  }, [])
+
+  useEffect(() => {
+    const container = bentoRef.current
+    const section = sectionRef.current
+    if (!container || !section) return
+
+    computeOffsets()
+
+    const handleResize = () => {
+      computeOffsets()
+    }
+    window.addEventListener('resize', handleResize)
+
+    let timeoutId = null
+
+    // Trigger throw animation when user enters the section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // User entered section: show single card briefly, then throw all 8 cards out!
+            timeoutId = setTimeout(() => {
+              setIsThrown(true)
+            }, 300)
+          } else {
+            // When scrolled back above the section, reset to single stacked card
+            if (entry.boundingClientRect.top > 0) {
+              if (timeoutId) clearTimeout(timeoutId)
+              setIsThrown(false)
+            }
+          }
+        })
+      },
+      {
+        root: null,
+        threshold: 0.28,
+      }
+    )
+
+    observer.observe(section)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+      observer.disconnect()
+      if (timeoutId) clearTimeout(timeoutId)
+    }
+  }, [computeOffsets])
+
   return (
-    <section className="wm-studio-section" id="studio">
+    <section className="wm-studio-section" id="studio" ref={sectionRef}>
       {/* Full-Screen Title Hero Block */}
       <div className="wm-studio-hero-full">
         {/* Main 2-Line Heading with Centered Sticker */}
@@ -68,8 +150,13 @@ function SeniorLedStudio() {
       </div>
 
       <div className="wm-studio-container">
-        {/* 8-Card Bento Grid */}
-        <div className="wm-studio-bento">
+        {/* 8-Card Bento Grid with Stack & Throw Animation */}
+        <div
+          className={`wm-studio-bento ${isThrown ? 'is-thrown' : 'is-stacked'}`}
+          ref={bentoRef}
+          onClick={() => setIsThrown((prev) => !prev)}
+          title={isThrown ? 'Click to stack cards' : 'Click to throw cards'}
+        >
           {/* Row 1 - Card 1: 11+ Years (Solid Black) */}
           <article className="wm-bento-card wm-bento-stat wm-bento-black">
             <span className="wm-bento-num">11+</span>

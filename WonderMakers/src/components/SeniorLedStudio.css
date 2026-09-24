@@ -127,27 +127,27 @@
    ========================================================================== */
 
 .wm-studio-subtext-container {
-  max-width: 740px;
+  max-width: 860px;
   width: 100%;
-  margin: 28px auto 0;
-  padding: 0 16px;
+  margin: 32px auto 0;
+  padding: 0 20px;
   text-align: center;
 }
 
 .wm-studio-subtext {
   font-family: 'Inter', -apple-system, sans-serif;
-  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  font-size: clamp(1.2rem, 1.75vw, 1.55rem);
   line-height: 1.65;
   color: var(--text-main);
   text-align: center;
   font-weight: 400;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   margin: 0 auto;
   transition: color 0.25s ease;
 }
 
 [data-theme='dark'] .wm-studio-subtext {
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 [data-theme='light'] .wm-studio-subtext {
@@ -159,12 +159,14 @@
    ========================================================================== */
 
 .wm-studio-bento {
+  position: relative;
   max-width: 1240px;
   width: 100%;
   margin: 64px auto 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 18px;
+  perspective: 1200px;
 }
 
 /* Base Bento Card */
@@ -175,14 +177,57 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.3s ease, border-color 0.3s ease;
   user-select: none;
+  will-change: transform, box-shadow;
+  transform-origin: center center;
 }
 
-.wm-bento-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+/* --------------------------------------------------------------------------
+   State: Stacked as ONE Single Card in the Center
+   -------------------------------------------------------------------------- */
+
+.wm-studio-bento.is-stacked .wm-bento-card {
+  transform: translate3d(var(--throw-x, 0px), var(--throw-y, 0px), 0)
+             rotate(var(--stack-rot, 0deg));
+  z-index: calc(20 - var(--card-idx, 0));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.4s ease;
+  transition-delay: calc((7 - var(--card-idx, 0)) * 25ms);
+  cursor: pointer;
+}
+
+/* Front card (Card 0: 11+) on top of the stack */
+.wm-studio-bento.is-stacked .wm-bento-card:first-child {
+  z-index: 25;
+  box-shadow: 0 32px 75px rgba(0, 0, 0, 0.55), 0 0 35px rgba(204, 255, 0, 0.15);
+}
+
+.wm-studio-bento.is-stacked .wm-bento-card:first-child:hover {
+  transform: translate3d(var(--throw-x, 0px), calc(var(--throw-y, 0px) - 8px), 0)
+             rotate(var(--stack-rot, 0deg)) scale(1.03);
+}
+
+/* --------------------------------------------------------------------------
+   State: Thrown Out to Full 8-Card Bento Grid
+   -------------------------------------------------------------------------- */
+
+.wm-studio-bento.is-thrown .wm-bento-card {
+  transform: translate3d(0, 0, 0) rotate(0deg);
+  z-index: 1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  transition: transform 0.85s cubic-bezier(0.18, 0.9, 0.22, 1.14),
+              box-shadow 0.35s ease;
+  transition-delay: calc(var(--card-idx, 0) * 65ms);
+}
+
+/* Standard Hover State Once Cards Are Thrown */
+.wm-studio-bento.is-thrown .wm-bento-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22);
+  z-index: 10;
+  transition-delay: 0s !important;
+  transition-duration: 0.25s !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -196,7 +241,7 @@
 
 .wm-bento-num {
   font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
-  font-size: clamp(3.2rem, 5.2vw, 4.6rem);
+  font-size: clamp(3.6rem, 5.8vw, 5.2rem);
   font-weight: 500;
   line-height: 0.92;
   letter-spacing: -0.035em;
@@ -205,11 +250,11 @@
 
 .wm-bento-label {
   font-family: 'Inter', -apple-system, sans-serif;
-  font-size: clamp(0.86rem, 1vw, 0.98rem);
+  font-size: clamp(1.05rem, 1.25vw, 1.22rem);
   line-height: 1.35;
-  font-weight: 400;
+  font-weight: 500;
   margin: 0;
-  max-width: 175px;
+  max-width: 220px;
 }
 
 /* Card 1: Solid Black (11+) */
@@ -353,13 +398,17 @@
   }
 
   .wm-studio-subtext-container {
-    max-width: 620px;
-    margin-top: 18px;
+    max-width: 680px;
+    margin-top: 22px;
   }
 
   .wm-studio-subtext {
-    font-size: clamp(0.96rem, 1.8vw, 1.12rem);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
     line-height: 1.62;
+  }
+
+  .wm-bento-label {
+    font-size: 1rem;
   }
 }
 
@@ -387,11 +436,11 @@
 
   .wm-studio-subtext-container {
     padding: 0 12px;
-    margin-top: 14px;
+    margin-top: 16px;
   }
 
   .wm-studio-subtext {
-    font-size: 0.95rem;
+    font-size: 1.08rem;
     line-height: 1.58;
   }
 
@@ -409,11 +458,11 @@
   }
 
   .wm-bento-num {
-    font-size: clamp(2.4rem, 9.5vw, 3.2rem);
+    font-size: clamp(2.6rem, 9.5vw, 3.4rem);
   }
 
   .wm-bento-label {
-    font-size: 0.8rem;
+    font-size: 0.92rem;
   }
 }
 
@@ -422,118 +471,43 @@
     padding: 16px 0 50px;
   }
 
+  .wm-studio-container {
+    padding: 0 14px;
+  }
+
   .wm-studio-line-1 {
     font-size: clamp(1.85rem, 10vw, 2.8rem);
   }
 
   .wm-studio-line-2 {
     font-size: clamp(2.15rem, 12.5vw, 3.4rem);
-  }
-
-  .wm-studio-subtext {
-    font-size: 0.9rem;
-    line-height: 1.54;
-  }
-
-  .wm-bento-num {
-    font-size: 2.2rem;
-  }
-
-  .wm-bento-label {
-    font-size: 0.76rem;
-    line-height: 1.3;
-  }
-}
-}
-
-.wm-bento-num {
-  font-size: clamp(2.8rem, 6vw, 3.6rem);
-}
-
-.wm-studio-line-1 {
-  font-size: clamp(2.8rem, 12vw, 5.5rem);
-}
-
-.wm-studio-line-2 {
-  font-size: clamp(3.2rem, 15vw, 6.8rem);
-}
-
-.wm-studio-subtext-container {
-  max-width: 620px;
-  margin-top: 18px;
-}
-
-.wm-studio-subtext {
-  font-size: clamp(0.96rem, 1.8vw, 1.12rem);
-  line-height: 1.62;
-}
-}
-
-@media (max-width: 640px) {
-  .wm-studio-line-1 {
-    font-size: clamp(2.2rem, 11vw, 3.8rem);
-  }
-
-  .wm-studio-line-2 {
-    font-size: clamp(2.5rem, 13.5vw, 4.6rem);
   }
 
   .wm-studio-center-badge {
-    width: clamp(84px, 19vw, 130px);
-    height: clamp(84px, 19vw, 130px);
-  }
-
-  .wm-studio-subtext-container {
-    padding: 0 12px;
-    margin-top: 14px;
+    width: clamp(75px, 20vw, 110px);
+    height: clamp(75px, 20vw, 110px);
   }
 
   .wm-studio-subtext {
-    font-size: 0.95rem;
-    line-height: 1.58;
-  }
-
-  .wm-studio-4slots-grid {
-    gap: 12px;
-  }
-
-  .wm-bento-card {
-    border-radius: 18px;
-  }
-
-  .wm-bento-stat {
-    padding: 18px 14px;
-  }
-
-  .wm-bento-num {
-    font-size: clamp(2.2rem, 8.5vw, 2.8rem);
-  }
-
-  .wm-bento-label {
-    font-size: 0.78rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .wm-studio-line-1 {
-    font-size: clamp(1.85rem, 10vw, 2.8rem);
-  }
-
-  .wm-studio-line-2 {
-    font-size: clamp(2.15rem, 12.5vw, 3.4rem);
-  }
-
-  .wm-studio-subtext {
-    font-size: 0.9rem;
+    font-size: 0.98rem;
     line-height: 1.54;
   }
 
+  .wm-studio-bento {
+    gap: 10px;
+    margin-top: 28px;
+  }
+
+  .wm-bento-stat {
+    padding: 14px 12px;
+  }
+
   .wm-bento-num {
-    font-size: 2rem;
+    font-size: clamp(1.85rem, 8vw, 2.2rem);
   }
 
   .wm-bento-label {
-    font-size: 0.74rem;
-    line-height: 1.3;
+    font-size: clamp(0.72rem, 3.2vw, 0.82rem);
+    line-height: 1.25;
   }
 }

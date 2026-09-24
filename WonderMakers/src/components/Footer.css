@@ -47,9 +47,9 @@
 }
 
 .wm-footer-title {
-  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: clamp(3.8rem, 11vw, 8.8rem);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 0.94;
   letter-spacing: -0.035em;
   color: #ffffff;
@@ -57,6 +57,37 @@
   margin: 0 0 36px;
   text-align: center;
   user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.15em;
+}
+
+.wm-footer-typed-text {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #ffffff;
+  display: inline-block;
+}
+
+.wm-footer-cursor {
+  display: inline-block;
+  width: 4px;
+  height: 0.78em;
+  background-color: var(--accent-lime, #d8ff00);
+  margin-left: 8px;
+  border-radius: 2px;
+  box-shadow: 0 0 18px rgba(216, 255, 0, 0.75);
+  animation: wmCursorBlink 0.9s infinite;
+  vertical-align: middle;
+}
+
+@keyframes wmCursorBlink {
+  0%, 45% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
 }
 
 /* Vibrant Lime Pill Button */
@@ -324,7 +355,7 @@
 
 @media (max-width: 640px) {
   .wm-footer {
-    padding: 70px 0 28px;
+    padding: 60px 0 28px;
   }
 
   .wm-footer-container {
@@ -332,17 +363,25 @@
   }
 
   .wm-footer-hero {
-    margin-bottom: 60px;
+    margin-bottom: 45px;
   }
 
   .wm-footer-title {
-    margin-bottom: 28px;
+    font-size: clamp(2.2rem, 9.5vw, 3.8rem);
+    margin-bottom: 24px;
+    min-height: auto;
+  }
+
+  .wm-footer-cursor {
+    height: 0.72em;
+    width: 3px;
+    margin-left: 6px;
   }
 
   .wm-footer-info-grid {
     grid-template-columns: 1fr;
     gap: 32px;
-    margin-bottom: 50px;
+    margin-bottom: 45px;
   }
 
   .wm-footer-col-social {
@@ -358,5 +397,121 @@
 
   .wm-footer-bottom-right {
     gap: 14px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-footer-container {
+    padding: 0 16px;
+  }
+
+  .wm-footer-title {
+    font-size: clamp(1.85rem, 8.8vw, 2.5rem);
+  }
+
+  .wm-footer-cta-btn {
+    padding: 8px 10px 8px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ==========================================================================
+   Creator Signature Block (Centered)
+   ========================================================================== */
+
+.wm-footer-creator-wrap {
+  width: 100%;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  user-select: none;
+}
+
+.wm-footer-creator-motto {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+  transition: color 0.25s ease;
+}
+
+.wm-footer-creator-dev {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: clamp(0.88rem, 1.05vw, 1rem);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #9ca3af;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.wm-footer-creator-link {
+  color: var(--accent-lime, #ccff00);
+  font-weight: 700;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding: 1px 4px;
+  transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.wm-footer-creator-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  background-color: var(--accent-lime, #ccff00);
+  box-shadow: 0 0 10px rgba(204, 255, 0, 0.6);
+  transform: scaleX(0.7);
+  transform-origin: center;
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.wm-footer-creator-link:hover {
+  color: #ffffff;
+  text-shadow: 0 0 14px rgba(204, 255, 0, 0.85);
+  transform: translateY(-1px);
+}
+
+.wm-footer-creator-link:hover::after {
+  transform: scaleX(1);
+  background-color: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 640px) {
+  .wm-footer-creator-wrap {
+    margin-top: 40px;
+    padding-top: 28px;
+    gap: 10px;
+  }
+
+  .wm-footer-creator-motto {
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+  }
+
+  .wm-footer-creator-dev {
+    font-size: 0.84rem;
+    letter-spacing: 0.02em;
+    flex-wrap: wrap;
   }
 }

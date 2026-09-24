@@ -1,0 +1,24 @@
+
+
+.wm-scroll-star-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wm-scroll-star-wrap.is-loaded {
+  opacity: 1;
+}
+
+.wm-scroll-star-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}

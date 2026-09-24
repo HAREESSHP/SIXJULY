@@ -1,0 +1,73 @@
+/* App Container & Global Page Responsiveness */
+
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bg-page);
+  overflow-x: clip;
+  transition: background-color 0.25s ease;
+}
+
+/* Allow 3D scroll star to float through sections seamlessly */
+.wm-hero,
+.wm-work-section,
+.wm-what-we-build,
+.wm-use-cases-section,
+.wm-launch-section,
+.wm-start-section,
+.wm-studio-section,
+.wm-faq-section {
+  background-color: transparent !important;
+  position: relative;
+  z-index: 2;
+}
+
+.wm-footer {
+  position: relative;
+  z-index: 2;
+}
+
+/* Laptops & Small Desktops (max-width: 1200px) */
+@media (max-width: 1200px) {
+  .app-container {
+    width: 100%;
+  }
+}
+
+/* Tablets Landscape & Medium Screens (max-width: 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --navbar-height: 74px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --navbar-height: 68px;
+  }
+
+  html,
+  body {
+    overflow-x: clip;
+    width: 100%;
+  }
+
+  .app-container {
+    min-height: 100dvh;
+    overflow-x: clip;
+  }
+}
+
+
+@media (max-width: 480px) {
+  :root {
+    --navbar-height: 64px;
+  }
+
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}

@@ -1,0 +1,450 @@
+/* ==========================================================================
+   Senior-Led Studios Section & 8-Card Bento Grid
+   ========================================================================== */
+
+.wm-studio-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 30px 0 40px;
+  background-color: var(--bg-page);
+  border-top: 1px solid var(--border-subtle);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.wm-studio-hero-full {
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  padding: 0 16px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.wm-studio-container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ==========================================================================
+   Main 2-Line Heading (Full Screen Typographic Hero)
+   ========================================================================== */
+
+.wm-studio-hero-title {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  user-select: none;
+}
+
+.wm-studio-line {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-weight: 500;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  color: var(--text-main);
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+[data-theme='dark'] .wm-studio-line {
+  color: #ffffff;
+}
+
+[data-theme='light'] .wm-studio-line {
+  color: #000000;
+}
+
+.wm-studio-line-1 {
+  font-size: clamp(3.2rem, 13.8vw, 15.5rem);
+  margin-bottom: 0;
+}
+
+.wm-studio-line-2 {
+  font-size: clamp(3.6rem, 17vw, 19rem);
+  letter-spacing: -0.03em;
+  margin-top: 0;
+}
+
+/* ==========================================================================
+   Centered Yellow Sticker Badge
+   ========================================================================== */
+
+.wm-studio-badge-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(7deg);
+  z-index: 3;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wm-studio-badge-wrapper:hover {
+  transform: translate(-50%, -50%) rotate(18deg) scale(1.08);
+}
+
+.wm-studio-center-badge {
+  width: clamp(120px, 18vw, 260px);
+  height: clamp(120px, 18vw, 260px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 14px 40px rgba(212, 255, 0, 0.48))
+    drop-shadow(0 6px 18px rgba(0, 0, 0, 0.28));
+  transition: filter 0.35s ease;
+}
+
+.wm-studio-badge-wrapper:hover .wm-studio-center-badge {
+  filter: drop-shadow(0 20px 55px rgba(212, 255, 0, 0.72))
+    drop-shadow(0 8px 24px rgba(0, 0, 0, 0.4));
+}
+
+.wm-studio-badge-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ==========================================================================
+   Centered Subtext
+   ========================================================================== */
+
+.wm-studio-subtext-container {
+  max-width: 740px;
+  width: 100%;
+  margin: 28px auto 0;
+  padding: 0 16px;
+  text-align: center;
+}
+
+.wm-studio-subtext {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(1rem, 1.35vw, 1.25rem);
+  line-height: 1.65;
+  color: var(--text-main);
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin: 0 auto;
+  transition: color 0.25s ease;
+}
+
+[data-theme='dark'] .wm-studio-subtext {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+[data-theme='light'] .wm-studio-subtext {
+  color: #111111;
+}
+
+/* ==========================================================================
+   8-Card Bento Grid (4 Columns x 2 Rows)
+   ========================================================================== */
+
+.wm-studio-bento {
+  max-width: 1240px;
+  width: 100%;
+  margin: 64px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+/* Base Bento Card */
+.wm-bento-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 22px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease, border-color 0.3s ease;
+  user-select: none;
+}
+
+.wm-bento-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   Stat Card Styles
+   -------------------------------------------------------------------------- */
+
+.wm-bento-stat {
+  justify-content: space-between;
+  padding: 28px 24px 26px;
+}
+
+.wm-bento-num {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(3.2rem, 5.2vw, 4.6rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  display: block;
+}
+
+.wm-bento-label {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.86rem, 1vw, 0.98rem);
+  line-height: 1.35;
+  font-weight: 400;
+  margin: 0;
+  max-width: 175px;
+}
+
+/* Card 1: Solid Black (11+) */
+.wm-bento-black {
+  background-color: #07070a;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.wm-bento-black .wm-bento-num {
+  color: #ffffff;
+}
+
+.wm-bento-black .wm-bento-label {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* Card 3: Dark Olive to Vibrant Lime Gradient (20+) */
+.wm-bento-gradient {
+  background: linear-gradient(
+    135deg,
+    #0a1002 0%,
+    #1d2d00 35%,
+    #709900 75%,
+    #a8dc00 100%
+  );
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.wm-bento-gradient .wm-bento-num {
+  color: #ffffff;
+}
+
+.wm-bento-gradient .wm-bento-label {
+  color: #ffffff;
+}
+
+/* Card 6: Crisp White (150+) */
+.wm-bento-white {
+  background-color: #ffffff;
+  color: #0b0c10;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.wm-bento-white .wm-bento-num {
+  color: #000000;
+}
+
+.wm-bento-white .wm-bento-label {
+  color: #111111;
+}
+
+/* Card 8: Vibrant Fluorescent Lime (4) */
+.wm-bento-lime {
+  background-color: #d8ff00;
+  color: #000000;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(216, 255, 0, 0.28);
+}
+
+.wm-bento-lime .wm-bento-num {
+  color: #000000;
+}
+
+.wm-bento-lime .wm-bento-label {
+  color: #000000;
+}
+
+/* --------------------------------------------------------------------------
+   Photo Cards
+   -------------------------------------------------------------------------- */
+
+.wm-bento-photo {
+  background-color: #07070a;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='dark'] .wm-bento-photo {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.wm-bento-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wm-bento-card:hover .wm-bento-img {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .wm-studio-bento {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 50px;
+  }
+
+  .wm-bento-stat {
+    padding: 22px 18px 20px;
+  }
+
+  .wm-bento-num {
+    font-size: clamp(2.6rem, 4.4vw, 3.6rem);
+  }
+}
+
+@media (max-width: 860px) {
+  .wm-studio-section {
+    padding: 24px 0 80px;
+  }
+
+  .wm-studio-bento {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    max-width: 640px;
+  }
+
+  .wm-bento-stat {
+    padding: 26px 24px;
+  }
+
+  .wm-bento-num {
+    font-size: clamp(3.2rem, 8vw, 4.2rem);
+  }
+
+  .wm-studio-line-1 {
+    font-size: clamp(2.8rem, 12vw, 5.5rem);
+  }
+
+  .wm-studio-line-2 {
+    font-size: clamp(3.2rem, 15vw, 6.8rem);
+  }
+
+  .wm-studio-subtext-container {
+    max-width: 620px;
+    margin-top: 18px;
+  }
+
+  .wm-studio-subtext {
+    font-size: clamp(0.96rem, 1.8vw, 1.12rem);
+    line-height: 1.62;
+  }
+}
+
+@media (max-width: 640px) {
+  .wm-studio-section {
+    padding: 20px 0 60px;
+  }
+
+  .wm-studio-hero-title {
+    margin-bottom: 0;
+  }
+
+  .wm-studio-line-1 {
+    font-size: clamp(2.2rem, 11vw, 3.8rem);
+  }
+
+  .wm-studio-line-2 {
+    font-size: clamp(2.5rem, 13.5vw, 4.6rem);
+  }
+
+  .wm-studio-center-badge {
+    width: clamp(84px, 19vw, 130px);
+    height: clamp(84px, 19vw, 130px);
+  }
+
+  .wm-studio-subtext-container {
+    padding: 0 12px;
+    margin-top: 14px;
+  }
+
+  .wm-studio-subtext {
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+
+  .wm-studio-bento {
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .wm-bento-card {
+    border-radius: 18px;
+  }
+
+  .wm-bento-stat {
+    padding: 20px 16px;
+  }
+
+  .wm-bento-num {
+    font-size: clamp(2.4rem, 9.5vw, 3.2rem);
+  }
+
+  .wm-bento-label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-studio-section {
+    padding: 16px 0 50px;
+  }
+
+  .wm-studio-line-1 {
+    font-size: clamp(1.85rem, 10vw, 2.8rem);
+  }
+
+  .wm-studio-line-2 {
+    font-size: clamp(2.15rem, 12.5vw, 3.4rem);
+  }
+
+  .wm-studio-subtext {
+    font-size: 0.9rem;
+    line-height: 1.54;
+  }
+
+  .wm-bento-num {
+    font-size: 2.2rem;
+  }
+
+  .wm-bento-label {
+    font-size: 0.76rem;
+    line-height: 1.3;
+  }
+}

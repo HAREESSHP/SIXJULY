@@ -1,0 +1,362 @@
+/* ==========================================================================
+   Footer Section
+   ========================================================================== */
+
+.wm-footer {
+  position: relative;
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 120px 0 36px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.wm-footer-container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   Top CTA Hero: WANT TO COLLABORATE? LET'S TALK + Contact Form Button
+   ========================================================================== */
+
+.wm-footer-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 110px;
+  width: 100%;
+}
+
+.wm-footer-eyebrow {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  display: block;
+}
+
+.wm-footer-title {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(3.8rem, 11vw, 8.8rem);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0 0 36px;
+  text-align: center;
+  user-select: none;
+}
+
+/* Vibrant Lime Pill Button */
+.wm-footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: #d8ff00;
+  color: #000000;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 8px 10px 8px 28px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  border: 1px solid transparent;
+  box-shadow: 0 8px 28px rgba(216, 255, 0, 0.28);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease, background-color 0.25s ease,
+    border-color 0.25s ease, color 0.25s ease;
+  user-select: none;
+}
+
+.wm-footer-cta-btn:hover {
+  transform: scale(1.04) translateY(-2px);
+  background-color: #000000;
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.wm-footer-cta-text {
+  color: #000000;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.wm-footer-cta-btn:hover .wm-footer-cta-text {
+  color: #ffffff;
+}
+
+/* White Circle Badge with Right Chevron */
+.wm-footer-cta-arrow {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s ease, color 0.25s ease;
+}
+
+.wm-footer-cta-btn:hover .wm-footer-cta-arrow {
+  transform: translateX(3px);
+  background-color: #d8ff00;
+  color: #000000;
+}
+
+/* ==========================================================================
+   Middle Info Grid (3 Columns: Ask, Visit, Socials)
+   ========================================================================== */
+
+.wm-footer-info-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.1fr 0.9fr;
+  gap: 40px;
+  margin-bottom: 90px;
+  width: 100%;
+}
+
+.wm-footer-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.wm-footer-col-label {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.82rem, 0.95vw, 0.92rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  display: block;
+}
+
+/* Column 1: Links (Email & Phone) */
+.wm-footer-link {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  font-weight: 450;
+  line-height: 1.6;
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.wm-footer-link:hover {
+  color: #d8ff00;
+}
+
+.wm-footer-email {
+  margin-bottom: 4px;
+}
+
+/* Column 2: Address */
+.wm-footer-address {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.98rem, 1.15vw, 1.1rem);
+  font-style: normal;
+  line-height: 1.55;
+  color: #ffffff;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Column 3: Social Cluster */
+.wm-footer-col-social {
+  align-items: flex-end;
+}
+
+.wm-footer-col-social .wm-footer-col-label {
+  text-align: right;
+  width: 100%;
+}
+
+.wm-footer-social-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.wm-footer-social-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Circular Social Buttons */
+.wm-footer-social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #1a1a20;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.wm-footer-social-btn:hover {
+  background-color: #d8ff00;
+  color: #000000;
+  border-color: #d8ff00;
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(216, 255, 0, 0.35);
+}
+
+/* ==========================================================================
+   Bottom Legal / Metadata Bar
+   ========================================================================== */
+
+.wm-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  width: 100%;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.78rem, 0.88vw, 0.86rem);
+  color: rgba(255, 255, 255, 0.6);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.wm-footer-bottom-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.wm-footer-map-link {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.wm-footer-map-link:hover {
+  color: #d8ff00;
+}
+
+.wm-footer-map-address {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.wm-footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.wm-footer-meta-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.wm-footer-meta-link:hover {
+  color: #ffffff;
+}
+
+.wm-footer-meta-tag {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .wm-footer {
+    padding: 90px 0 32px;
+  }
+
+  .wm-footer-hero {
+    margin-bottom: 80px;
+  }
+
+  .wm-footer-info-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-bottom: 70px;
+  }
+
+  .wm-footer-col-social {
+    grid-column: span 2;
+    align-items: flex-start;
+  }
+
+  .wm-footer-col-social .wm-footer-col-label {
+    text-align: left;
+  }
+
+  .wm-footer-social-cluster {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .wm-footer {
+    padding: 70px 0 28px;
+  }
+
+  .wm-footer-container {
+    padding: 0 20px;
+  }
+
+  .wm-footer-hero {
+    margin-bottom: 60px;
+  }
+
+  .wm-footer-title {
+    margin-bottom: 28px;
+  }
+
+  .wm-footer-info-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 50px;
+  }
+
+  .wm-footer-col-social {
+    grid-column: span 1;
+  }
+
+  .wm-footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding-top: 22px;
+  }
+
+  .wm-footer-bottom-right {
+    gap: 14px;
+  }
+}

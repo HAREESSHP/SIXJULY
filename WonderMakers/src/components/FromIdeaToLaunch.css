@@ -1,0 +1,345 @@
+/* ==========================================================================
+   From Idea To Launch Section: Sticky Stacking Process Cards
+   ========================================================================== */
+
+.wm-launch-section {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  padding: 80px 0 140px;
+  background-color: var(--bg-page);
+  border-top: 1px solid var(--border-subtle);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.wm-launch-container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(36px, 6vw, 90px);
+  align-items: stretch;
+}
+
+/* ==========================================================================
+   Left Column: Sticky Headline, Subtext & CTA
+   ========================================================================== */
+
+.wm-launch-left {
+  position: relative;
+  align-self: stretch;
+  height: 100%;
+}
+
+.wm-launch-left-sticky {
+  position: sticky;
+  top: 110px;
+}
+
+.wm-launch-heading {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(2.6rem, 4.5vw, 4.2rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wm-launch-subtext {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.95rem, 1.15vw, 1.1rem);
+  line-height: 1.62;
+  color: var(--text-muted);
+  max-width: 420px;
+  margin: 0 0 32px;
+  transition: color 0.25s ease;
+}
+
+/* "Explore Services" Pill CTA Button */
+.wm-launch-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 6px 8px 6px 24px;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+[data-theme='dark'] .wm-launch-cta-btn {
+  background-color: #141620;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.wm-launch-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.24);
+}
+
+.wm-launch-cta-text {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.96rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.wm-launch-cta-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--accent-lime);
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.22s ease;
+}
+
+.wm-launch-cta-btn:hover .wm-launch-cta-arrow {
+  transform: translateX(2px);
+}
+
+/* ==========================================================================
+   Right Column: Sticky Stacking Cards (Think, Design, Build)
+   ========================================================================== */
+
+.wm-launch-right {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 100px;
+}
+
+.wm-launch-card {
+  position: sticky;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  border-radius: 22px;
+  padding: 24px 30px 28px;
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08), 0 24px 60px rgba(0, 0, 0, 0.12);
+  margin-bottom: 80px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+  cursor: default;
+}
+
+.wm-launch-card:last-child {
+  margin-bottom: 0;
+}
+
+[data-theme='dark'] .wm-launch-card {
+  background-color: #0f1017;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.4), 0 24px 70px rgba(0, 0, 0, 0.55);
+}
+
+.wm-launch-card:hover {
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
+[data-theme='dark'] .wm-launch-card:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+/* Card Header (Stays visible as a tab when overlapped!) */
+.wm-launch-card-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 48px;
+  margin-bottom: 16px;
+}
+
+.wm-launch-card-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+[data-theme='dark'] .wm-launch-card-badge {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.wm-launch-card:hover .wm-launch-card-badge {
+  transform: scale(1.08);
+  background-color: #ffe600;
+  color: #000000;
+}
+
+.wm-launch-card-title {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(1.25rem, 1.6vw, 1.55rem);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #0b0c10;
+  margin: 0;
+  line-height: 1.2;
+}
+
+[data-theme='dark'] .wm-launch-card-title {
+  color: #ffffff;
+}
+
+.wm-launch-card-description {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.92rem, 1.08vw, 1.02rem);
+  line-height: 1.6;
+  color: #4b5563;
+  margin: 0 0 20px;
+}
+
+[data-theme='dark'] .wm-launch-card-description {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+/* Card Tags / Pills */
+.wm-launch-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+}
+
+.wm-launch-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #2b2f38;
+  background-color: #f1f2f5;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.22s ease;
+  cursor: pointer;
+}
+
+[data-theme='dark'] .wm-launch-pill {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.wm-launch-pill:hover {
+  background-color: #ffe600;
+  color: #000000;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255, 230, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .wm-launch-container {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .wm-launch-left {
+    position: static;
+    height: auto;
+  }
+
+  .wm-launch-left-sticky {
+    position: static;
+  }
+
+  .wm-launch-subtext {
+    max-width: 100%;
+  }
+
+  .wm-launch-card {
+    position: static !important;
+    transform: none !important;
+    margin-bottom: 24px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.15);
+  }
+
+  .wm-launch-right {
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .wm-launch-section {
+    padding: 36px 0 60px;
+  }
+
+  .wm-launch-container {
+    padding: 0 16px;
+  }
+
+  .wm-launch-card {
+    padding: 20px 18px 22px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+  }
+
+  .wm-launch-card-title {
+    font-size: 1.15rem;
+  }
+
+  .wm-launch-card-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 0.88rem;
+  }
+
+  .wm-launch-pill {
+    font-size: 0.74rem;
+    padding: 5px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-launch-heading {
+    font-size: clamp(2rem, 8.5vw, 2.6rem);
+    margin-bottom: 14px;
+  }
+
+  .wm-launch-subtext {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin-bottom: 20px;
+  }
+
+  .wm-launch-card {
+    padding: 16px 14px 18px;
+    border-radius: 16px;
+  }
+
+  .wm-launch-card-header {
+    min-height: auto;
+    margin-bottom: 12px;
+  }
+}

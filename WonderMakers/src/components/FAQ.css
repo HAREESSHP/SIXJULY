@@ -1,0 +1,354 @@
+/* ==========================================================================
+   FAQ Section
+   ========================================================================== */
+
+.wm-faq-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 24px 0 120px;
+  background-color: var(--bg-page);
+  border-top: 1px solid var(--border-subtle);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.wm-faq-container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Heading: FAQ */
+.wm-faq-heading {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(2.8rem, 6vw, 4.6rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--text-main);
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  text-align: left;
+  transition: color 0.25s ease;
+}
+
+[data-theme='dark'] .wm-faq-heading {
+  color: #ffffff;
+}
+
+[data-theme='light'] .wm-faq-heading {
+  color: #0b0c10;
+}
+
+/* ==========================================================================
+   Accordion List & Items (Flowing In From Right Side of Screen)
+   ========================================================================== */
+
+.wm-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.wm-faq-item {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+
+  /* Flow in smoothly from the right side of the screen */
+  opacity: 0;
+  transform: translate3d(90px, 0, 0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+  will-change: transform, opacity;
+}
+
+[data-theme='dark'] .wm-faq-item {
+  background-color: #0e1017;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Scrolled into view state with natural stagger delay */
+.wm-faq-item.is-in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition-delay: calc(var(--card-idx, 0) * 45ms);
+}
+
+/* Interactive Hover: subtle interactive nudge to the left with rich shadow */
+.wm-faq-item.is-in-view:hover {
+  transform: translate3d(-6px, 0, 0);
+  transition-delay: 0s;
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+}
+
+[data-theme='dark'] .wm-faq-item.is-in-view:hover {
+  transform: translate3d(-6px, 0, 0);
+  transition-delay: 0s;
+  border-color: rgba(204, 255, 0, 0.4);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 18px rgba(204, 255, 0, 0.12);
+}
+
+.wm-faq-item.is-open {
+  border-color: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='dark'] .wm-faq-item.is-open {
+  border-color: rgba(204, 255, 0, 0.45);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55), 0 0 20px rgba(204, 255, 0, 0.15);
+}
+
+/* ==========================================================================
+   Accordion Header / Trigger Button
+   ========================================================================== */
+
+.wm-faq-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 28px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 18px;
+  user-select: none;
+}
+
+.wm-faq-question {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(1rem, 1.22vw, 1.15rem);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text-main);
+  flex-grow: 1;
+  transition: color 0.2s ease;
+}
+
+[data-theme='dark'] .wm-faq-question {
+  color: #ffffff;
+}
+
+[data-theme='light'] .wm-faq-question {
+  color: #0c0d12;
+}
+
+.wm-faq-trigger:hover .wm-faq-question {
+  color: #000000;
+}
+
+[data-theme='dark'] .wm-faq-trigger:hover .wm-faq-question {
+  color: #ffffff;
+}
+
+/* Circular Plus / Cross Badge Icon */
+.wm-faq-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #000000;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+[data-theme='dark'] .wm-faq-icon {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.wm-faq-trigger:hover .wm-faq-icon {
+  background-color: #ccff00;
+  color: #000000;
+  transform: scale(1.08) rotate(12deg);
+  box-shadow: 0 4px 14px rgba(204, 255, 0, 0.35);
+}
+
+.wm-faq-item.is-open .wm-faq-icon {
+  transform: rotate(45deg) scale(1.05);
+  background-color: #ccff00;
+  color: #000000;
+  box-shadow: 0 4px 14px rgba(204, 255, 0, 0.4);
+}
+
+.wm-faq-svg {
+  display: block;
+}
+
+/* ==========================================================================
+   Accordion Smooth Height Collapse & Flowing Answer Reveal
+   ========================================================================== */
+
+.wm-faq-answer-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wm-faq-item.is-open .wm-faq-answer-collapse {
+  grid-template-rows: 1fr;
+}
+
+.wm-faq-answer-inner {
+  overflow: hidden;
+  padding: 0 28px;
+  transition: padding 0.3s ease;
+}
+
+.wm-faq-item.is-open .wm-faq-answer-inner {
+  padding: 0 28px 24px;
+}
+
+.wm-faq-answer-text {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.92rem, 1.05vw, 1.02rem);
+  line-height: 1.65;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 18px;
+  margin: 0;
+  max-width: 920px;
+  opacity: 0;
+  transform: translate3d(24px, 0, 0);
+  transition: opacity 0.35s ease 0.08s,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.08s,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.wm-faq-item.is-open .wm-faq-answer-text {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+[data-theme='dark'] .wm-faq-answer-text {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+[data-theme='light'] .wm-faq-answer-text {
+  color: #4b5563;
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .wm-faq-section {
+    padding: 20px 0 100px;
+  }
+
+  .wm-faq-heading {
+    margin-bottom: 24px;
+  }
+
+  .wm-faq-trigger {
+    padding: 20px 22px;
+  }
+
+  .wm-faq-answer-inner {
+    padding: 0 22px;
+  }
+
+  .wm-faq-item.is-open .wm-faq-answer-inner {
+    padding: 0 22px 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .wm-faq-section {
+    padding: 16px 0 80px;
+  }
+
+  .wm-faq-container {
+    padding: 0 16px;
+  }
+
+  .wm-faq-heading {
+    font-size: clamp(2.4rem, 8vw, 3.4rem);
+    margin-bottom: 20px;
+  }
+
+  .wm-faq-item {
+    border-radius: 16px;
+  }
+
+  .wm-faq-trigger {
+    padding: 18px 18px;
+    gap: 14px;
+  }
+
+  .wm-faq-question {
+    font-size: 0.96rem;
+  }
+
+  .wm-faq-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .wm-faq-answer-inner {
+    padding: 0 18px;
+  }
+
+  .wm-faq-item.is-open .wm-faq-answer-inner {
+    padding: 0 18px 18px;
+  }
+
+  .wm-faq-answer-text {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    padding-top: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-faq-section {
+    padding: 12px 0 60px;
+  }
+
+  .wm-faq-heading {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+
+  .wm-faq-trigger {
+    padding: 16px 14px;
+  }
+
+  .wm-faq-question {
+    font-size: 0.92rem;
+  }
+
+  .wm-faq-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .wm-faq-answer-inner {
+    padding: 0 14px;
+  }
+
+  .wm-faq-item.is-open .wm-faq-answer-inner {
+    padding: 0 14px 16px;
+  }
+}

@@ -1,0 +1,459 @@
+/* ==========================================================================
+   What We Build / Services Section
+   ========================================================================== */
+
+.wm-what-we-build {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  padding: 32px 0 120px;
+  background-color: var(--bg-page);
+  border-top: 1px solid var(--border-subtle);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ==========================================================================
+   Top Rolling Marquee Ticker
+   ========================================================================== */
+
+.wm-ticker-viewport {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 70px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  user-select: none;
+}
+
+.wm-ticker-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: wmMarqueeScroll 30s linear infinite;
+}
+
+.wm-ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes wmMarqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.wm-ticker-segment {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.wm-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(24px, 3.8vw, 54px);
+  padding-right: clamp(24px, 3.8vw, 54px);
+  flex-shrink: 0;
+}
+
+/* Sticker Star Badge */
+.wm-ticker-badge {
+  width: clamp(52px, 5.8vw, 84px);
+  height: clamp(52px, 5.8vw, 84px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.wm-ticker-badge-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.wm-ticker-item:hover .wm-ticker-badge {
+  transform: rotate(18deg) scale(1.08);
+}
+
+.wm-ticker-text {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(3.2rem, 7.8vw, 7.2rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--text-main);
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+
+[data-theme='dark'] .wm-ticker-text {
+  color: #ffffff;
+}
+
+[data-theme='light'] .wm-ticker-text {
+  color: #0b0c10;
+}
+
+/* ==========================================================================
+   Two-Column Showcase Container
+   ========================================================================== */
+
+.wm-build-container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(36px, 6vw, 90px);
+  align-items: stretch;
+}
+
+/* Left Column: Sticky Title & Subtext spanning full height of cards */
+.wm-build-left {
+  position: relative;
+  align-self: stretch;
+  height: 100%;
+}
+
+.wm-build-left-sticky {
+  position: sticky;
+  top: 110px;
+}
+
+.wm-build-heading {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(2.8rem, 4.8vw, 4.4rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+  text-transform: uppercase;
+  margin: 0 0 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wm-build-subtext {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.95rem, 1.15vw, 1.12rem);
+  line-height: 1.62;
+  color: var(--text-muted);
+  max-width: 380px;
+  margin: 0;
+  transition: color 0.25s ease;
+}
+
+/* ==========================================================================
+   Right Column: Stacking Sticky Service Cards
+   ========================================================================== */
+
+.wm-build-right {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 100px;
+}
+
+.wm-build-card {
+  position: sticky;
+  width: 100%;
+  background-color: #07070a;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  padding: 22px 30px 28px;
+  overflow: hidden;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.5), 0 24px 70px rgba(0, 0, 0, 0.6);
+  margin-bottom: 80px;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  will-change: transform;
+}
+
+.wm-build-card:last-child {
+  margin-bottom: 0;
+}
+
+.wm-build-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Card Header (Remains visible as a tab when overlapped!) */
+.wm-bcard-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  min-height: 48px;
+}
+
+.wm-bcard-title {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(1.1rem, 1.45vw, 1.38rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0;
+  max-width: 82%;
+  line-height: 1.22;
+}
+
+.wm-bcard-num {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  flex-shrink: 0;
+}
+
+/* Card Media / Image */
+.wm-bcard-media {
+  width: 100%;
+  aspect-ratio: 16 / 8.5;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 18px;
+}
+
+.wm-bcard-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wm-build-card:hover .wm-bcard-img {
+  transform: scale(1.025);
+}
+
+/* Card Description */
+.wm-bcard-description {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.86rem, 1vw, 0.95rem);
+  line-height: 1.58;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0 0 20px;
+}
+
+/* Card Tags / Pills (Default Dark Cards) */
+.wm-bcard-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+}
+
+.wm-bcard-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #0b0c10;
+  background-color: #ffffff;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: all 0.22s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+.wm-bcard-pill:hover {
+  background-color: #ffe600;
+  color: #000000;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(255, 230, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Light Card Variant (Card 03: Digital Products & Platforms)
+   ========================================================================== */
+
+.wm-build-card.is-light {
+  background-color: #eaebef;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.14), 0 24px 70px rgba(0, 0, 0, 0.18);
+}
+
+.wm-build-card.is-light:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.wm-build-card.is-light .wm-bcard-title {
+  color: #0c0d12;
+}
+
+.wm-build-card.is-light .wm-bcard-num {
+  color: #0c0d12;
+}
+
+.wm-build-card.is-light .wm-bcard-description {
+  color: #334155;
+}
+
+.wm-build-card.is-light .wm-bcard-media {
+  background-color: #e2e4e8;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.wm-build-card.is-light .wm-bcard-pill {
+  background-color: #16171d;
+  color: #ffffff;
+}
+
+.wm-build-card.is-light .wm-bcard-pill:hover {
+  background-color: #ffe600;
+  color: #000000;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(255, 230, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+
+@media (max-width: 960px) {
+  .wm-build-container {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .wm-build-left {
+    position: static;
+    height: auto;
+  }
+
+  .wm-build-left-sticky {
+    position: static;
+  }
+
+  .wm-build-subtext {
+    max-width: 100%;
+  }
+
+  .wm-build-card {
+    position: static !important;
+    transform: none !important;
+    margin-bottom: 24px;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.25);
+  }
+
+  .wm-build-right {
+    padding-bottom: 0;
+  }
+
+  .wm-ticker-viewport {
+    margin-bottom: 44px;
+  }
+}
+
+@media (max-width: 640px) {
+  .wm-what-we-build {
+    padding: 24px 0 60px;
+  }
+
+  .wm-build-container {
+    padding: 0 16px;
+  }
+
+  .wm-build-card {
+    padding: 20px 18px 22px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+  }
+
+  .wm-bcard-title {
+    font-size: 1.08rem;
+  }
+
+  .wm-bcard-num {
+    font-size: 1.65rem;
+  }
+
+  .wm-bcard-pill {
+    font-size: 0.74rem;
+    padding: 5px 12px;
+  }
+
+  .wm-ticker-item {
+    gap: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-build-heading {
+    font-size: clamp(2rem, 8.5vw, 2.6rem);
+    margin-bottom: 14px;
+  }
+
+  .wm-build-subtext {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .wm-build-card {
+    padding: 16px 14px 18px;
+    border-radius: 16px;
+  }
+
+  .wm-bcard-header {
+    min-height: auto;
+    margin-bottom: 12px;
+  }
+
+  .wm-bcard-title {
+    font-size: 0.98rem;
+  }
+
+  .wm-bcard-num {
+    font-size: 1.45rem;
+  }
+
+  .wm-bcard-media {
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    margin-bottom: 14px;
+  }
+
+  .wm-bcard-description {
+    font-size: 0.84rem;
+    line-height: 1.52;
+    margin-bottom: 14px;
+  }
+
+  .wm-bcard-pill {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+  }
+
+  .wm-ticker-text {
+    font-size: clamp(2rem, 8.2vw, 3.2rem);
+  }
+
+  .wm-ticker-badge {
+    width: 44px;
+    height: 44px;
+  }
+
+  .wm-ticker-viewport {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+  }
+}

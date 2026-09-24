@@ -1,0 +1,547 @@
+/* Hero Section Styling - Includes Floating Brand Logos Marquee */
+
+.wm-hero {
+  position: relative;
+  min-height: calc(100vh - 82px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0 48px;
+  overflow: hidden;
+  background-color: var(--bg-page);
+  transition: background-color 0.25s ease;
+}
+
+/* Ambient Corner Atmospheric Lighting */
+.wm-hero-glow-tl {
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(204, 255, 0, 0.24) 0%, rgba(204, 255, 0, 0.06) 50%, transparent 75%);
+  filter: blur(65px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wm-hero-glow-br {
+  position: absolute;
+  bottom: -60px;
+  left: -80px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(204, 255, 0, 0.25) 0%, rgba(204, 255, 0, 0.05) 55%, transparent 80%);
+  filter: blur(65px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme='dark'] .wm-hero-glow-tl {
+  background: radial-gradient(circle, rgba(204, 255, 0, 0.14) 0%, rgba(204, 255, 0, 0.03) 55%, transparent 80%);
+}
+
+[data-theme='dark'] .wm-hero-glow-br {
+  background: radial-gradient(circle, rgba(204, 255, 0, 0.16) 0%, rgba(204, 255, 0, 0.03) 55%, transparent 80%);
+}
+
+/* Main Hero Content Container */
+.wm-hero-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto clamp(40px, 4.5vw, 64px);
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+}
+
+/* Headline Wrapper */
+.wm-hero-headline-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 14px;
+  user-select: none;
+}
+
+.wm-hero-title {
+  font-family: 'Codec Pro', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(1.8rem, 6.8vw, 7.8rem);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0 12px;
+  transition: color 0.25s ease;
+  word-break: break-word;
+}
+
+.wm-title-row {
+  display: block;
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .wm-hero-title {
+    font-size: clamp(1.6rem, 7.6vw, 2.6rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+  }
+
+  .wm-title-row {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+/* Subtitle */
+.wm-hero-subtitle {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.92rem, 1.2vw, 1.28rem);
+  line-height: 1.55;
+  font-weight: 400;
+  color: var(--text-main);
+  max-width: 560px;
+  margin: clamp(28px, 4.5vw, 68px) auto 0;
+  padding: 0 16px;
+  letter-spacing: -0.01em;
+  transition: color 0.25s ease;
+}
+
+/* Circular Neon Lime Scroll Down Button */
+.wm-hero-scroll-btn {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background-color: var(--accent-lime);
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.2, 0.6, 0.35, 1), box-shadow 0.25s ease, background-color 0.2s ease;
+  box-shadow: 0 4px 18px var(--accent-lime-glow);
+  margin-top: 8px;
+}
+
+.wm-hero-scroll-btn:hover {
+  transform: translateY(3px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(204, 255, 0, 0.55);
+}
+
+.wm-scroll-arrow {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+}
+
+.wm-hero-scroll-btn:hover .wm-scroll-arrow {
+  transform: translateY(2px);
+}
+
+/* ==========================================================================
+   Floating Brand Logos Marquee (Part of Hero Section)
+   ========================================================================== */
+
+.wm-hero-brands-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: clamp(24px, 3vw, 40px);
+  /* Smooth edge fade mask */
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.wm-marquee-row {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+
+.wm-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.wm-marquee-track.scroll-left {
+  animation: wmMarqueeLeft 38s linear infinite;
+}
+
+.wm-marquee-track.scroll-right {
+  animation: wmMarqueeRight 38s linear infinite;
+}
+
+.wm-marquee-row:hover .wm-marquee-track {
+  animation-play-state: paused;
+}
+
+.wm-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 16px;
+  flex-shrink: 0;
+}
+
+/* Individual Brand Logo Card */
+.wm-brand-card {
+  aspect-ratio: 374 / 250;
+  height: clamp(84px, 9.8vw, 130px);
+  border-radius: 20px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.25s cubic-bezier(0.2, 0.6, 0.35, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  color: var(--text-main);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+[data-theme='dark'] .wm-brand-card {
+  background-color: #14161f;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+.wm-brand-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] .wm-brand-card:hover {
+  border-color: rgba(204, 255, 0, 0.3);
+  box-shadow: 0 8px 24px rgba(204, 255, 0, 0.12);
+}
+
+/* Scaled prominent SVGs inside cards */
+.wm-brand-card svg {
+  height: 110%;
+  width: auto;
+  max-width: 82%;
+  max-height: 110%;
+  display: block;
+  fill: currentColor;
+  color: var(--text-main);
+  transform: scale(1.72);
+  transform-origin: center center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.wm-brand-card:hover svg {
+  transform: scale(1.82);
+  opacity: 0.9;
+}
+
+/* Infinite Scroll Keyframes */
+@keyframes wmMarqueeLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes wmMarqueeRight {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* ==========================================================================
+   Responsive Media Queries
+   ========================================================================== */
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  .wm-hero {
+    padding: 16px 0 36px;
+    min-height: auto;
+  }
+
+  .wm-hero-container {
+    padding: 0 16px;
+    gap: 22px;
+    margin-bottom: 24px;
+  }
+
+  .wm-hero-headline-wrap {
+    margin-top: 10px;
+  }
+
+  .wm-hero-subtitle {
+    font-size: 0.95rem;
+    padding: 0 12px;
+    max-width: 480px;
+    margin: 32px auto 0;
+  }
+
+  .wm-hero-scroll-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .wm-scroll-arrow {
+    width: 17px;
+    height: 17px;
+  }
+
+  .wm-hero-brands-wrap {
+    gap: 12px;
+  }
+
+  .wm-marquee-group {
+    gap: 12px;
+    padding-right: 12px;
+  }
+
+  .wm-brand-card {
+    height: clamp(66px, 14vw, 88px);
+    border-radius: 16px;
+    padding: 6px 12px;
+  }
+
+  .wm-brand-card svg {
+    transform: scale(1.6);
+  }
+
+  .wm-marquee-track.scroll-left {
+    animation-duration: 28s;
+  }
+
+  .wm-marquee-track.scroll-right {
+    animation-duration: 28s;
+  }
+}
+
+/* Mobile Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .wm-hero {
+    padding: 12px 0 28px;
+  }
+
+  .wm-hero-container {
+    padding: 0 12px;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .wm-hero-title {
+    font-size: clamp(1.85rem, 8.4vw, 2.5rem);
+    letter-spacing: -0.015em;
+  }
+
+  .wm-hero-subtitle {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    padding: 0 6px;
+    margin: 24px auto 0;
+  }
+
+  .wm-hero-scroll-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .wm-scroll-arrow {
+    width: 15px;
+    height: 15px;
+  }
+
+  .wm-hero-brands-wrap {
+    gap: 10px;
+  }
+
+  .wm-marquee-group {
+    gap: 10px;
+    padding-right: 10px;
+  }
+
+  .wm-brand-card {
+    height: clamp(54px, 15vw, 70px);
+    border-radius: 14px;
+    padding: 4px 8px;
+  }
+
+  .wm-brand-card svg {
+    transform: scale(1.48);
+  }
+
+  .wm-marquee-track.scroll-left {
+    animation-duration: 22s;
+  }
+
+  .wm-marquee-track.scroll-right {
+    animation-duration: 22s;
+  }
+}
+
+/* ==========================================================================
+   Awards & Trust Cards Grid (Distinct 3-Column Layout)
+   ========================================================================== */
+
+.wm-hero-awards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px;
+}
+
+.wm-award-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 32px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 155px;
+  aspect-ratio: 35 / 16;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+  transition: transform 0.25s cubic-bezier(0.2, 0.6, 0.35, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  cursor: pointer;
+}
+
+[data-theme='dark'] .wm-award-card {
+  background-color: #14161f;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+}
+
+.wm-award-card:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme='dark'] .wm-award-card:hover {
+  border-color: rgba(204, 255, 0, 0.35);
+  box-shadow: 0 10px 30px rgba(204, 255, 0, 0.12);
+}
+
+.wm-award-icon {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.wm-award-icon svg {
+  max-height: 100%;
+  width: auto;
+  max-width: 80%;
+  fill: currentColor;
+  color: var(--text-main);
+  transition: color 0.2s ease;
+}
+
+.wm-award-text {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: clamp(0.92rem, 1.1vw, 1.05rem);
+  font-weight: 500;
+  color: var(--text-main);
+  text-align: center;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 980px) {
+  .wm-hero-awards-grid {
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  .wm-award-card {
+    padding: 24px 16px 20px;
+    min-height: 135px;
+    border-radius: 16px;
+  }
+
+  .wm-award-icon {
+    height: 44px;
+  }
+}
+
+@media (max-width: 640px) {
+  .wm-hero-awards-grid {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .wm-award-card {
+    padding: 22px 20px 18px;
+    min-height: auto;
+    aspect-ratio: auto;
+    gap: 12px;
+  }
+
+  .wm-brand-card {
+    height: 76px;
+    border-radius: 14px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-hero {
+    padding: 32px 0 50px;
+  }
+
+  .wm-hero-container {
+    padding: 0 16px;
+    gap: 20px;
+  }
+
+  .wm-hero-scroll-btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .wm-brand-card {
+    height: 68px;
+    border-radius: 12px;
+  }
+
+  .wm-award-card {
+    padding: 18px 16px 16px;
+    border-radius: 14px;
+  }
+
+  .wm-award-text {
+    font-size: 0.9rem;
+  }
+}

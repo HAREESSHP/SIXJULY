@@ -83,10 +83,8 @@ function FAQ() {
   const toggleItem = (id) => {
     setOpenId((prev) => (prev === id ? null : id))
   }
-
   useEffect(() => {
     if (!listRef.current) return
-
     const items = listRef.current.querySelectorAll('.wm-faq-item')
     const observer = new IntersectionObserver(
       (entries) => {

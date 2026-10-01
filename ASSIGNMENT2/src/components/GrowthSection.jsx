@@ -1,9 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './GrowthSection.css'
 
-// ============================================================================
-// Features & 16-Tile Map
-// ============================================================================
 export const FEATURES = [
   // Top Row Cards
   {

@@ -68,7 +68,7 @@
 
 .card-title {
   font-size: 0.8125rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.05em;
   color: #1a1a1a;
   margin-bottom: 0.45rem;
@@ -81,7 +81,7 @@
   line-height: 1.48;
   color: #6c707a;
   max-width: 295px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 /* --------------------------------------------------------------------------

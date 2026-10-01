@@ -98,15 +98,15 @@ export default function GrowthSection() {
   // Fluid responsive metrics ensuring headline and 4x4 grid fit within any screen width
   const getResponsiveMetrics = (width) => {
     if (width <= 480) {
-      return { tileSize: 16, tileGap: 1.5, sideMargin: 8, minSlot: 10 }
+      return { tileSize: 16, tileGap: 1.5, sideMargin: 8, minSlot: 12 }
     } else if (width <= 768) {
-      return { tileSize: 24, tileGap: 2, sideMargin: 14, minSlot: 14 }
+      return { tileSize: 24, tileGap: 2, sideMargin: 14, minSlot: 16 }
     } else if (width <= 1024) {
-      // Laptop-1024 / Tablet landscape: calibrated to 34px with 20px breathing space below
-      return { tileSize: 34, tileGap: 2, sideMargin: 20, minSlot: 18 }
+      // Laptop-1024 / Tablet landscape: calibrated with optimal breathing room
+      return { tileSize: 34, tileGap: 2, sideMargin: 20, minSlot: 22 }
     } else {
-      // Large Desktop (>1024px)
-      return { tileSize: 42, tileGap: 2.5, sideMargin: 26, minSlot: 24 }
+      // Large Desktop (>1024px): calibrated for perfect optical kerning of hyphen
+      return { tileSize: 42, tileGap: 2.5, sideMargin: 26, minSlot: 36 }
     }
   }
 

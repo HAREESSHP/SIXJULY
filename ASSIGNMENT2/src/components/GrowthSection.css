@@ -1,0 +1,407 @@
+/* Outer scroll track: ample runway for smooth progression */
+.growth-section {
+  position: relative;
+  width: 100%;
+  height: 380vh;
+  background-color: #ffffff;
+}
+
+/* Sticky 100vh viewport that stays pinned during scroll */
+.growth-viewport {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4.5vh 6vw;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  user-select: none;
+}
+
+/* --------------------------------------------------------------------------
+   Feature Cards Grid (Top & Bottom Rows)
+   -------------------------------------------------------------------------- */
+.cards-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3.5rem;
+  width: 100%;
+  max-width: 1240px;
+  z-index: 10;
+}
+
+.cards-row-top {
+  align-items: flex-start;
+}
+
+.cards-row-bottom {
+  align-items: flex-start;
+}
+
+.feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* Destination placeholder where tiles land at progress=1 */
+.tile-cluster-placeholder {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  margin-bottom: 1.15rem;
+  flex-shrink: 0;
+}
+
+/* Card typography */
+.card-content {
+  will-change: opacity, transform;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+}
+
+.card-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #1a1a1a;
+  margin-bottom: 0.45rem;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.card-description {
+  font-size: 0.8125rem;
+  line-height: 1.48;
+  color: #6c707a;
+  max-width: 295px;
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   Center Headline & Floating Badge
+   -------------------------------------------------------------------------- */
+.center-headline-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 100vw;
+  padding: 0 0.75rem;
+  box-sizing: border-box;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* "THE LEVERS" Pill Badge */
+.levers-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: #f3fe43;
+  padding: 4px 10px;
+  border-radius: 0;
+  margin-bottom: 1.15rem;
+  will-change: opacity, transform;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.badge-text {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #000000;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Corner Pixel Stair Icon overlapping the top-right corner */
+.corner-pixel-icon {
+  position: absolute;
+  top: -5px;
+  right: -6.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5px;
+  pointer-events: none;
+}
+
+.pixel-row {
+  display: flex;
+  gap: 1.5px;
+}
+
+.pixel-box {
+  width: 4.5px;
+  height: 4.5px;
+  background-color: #000000;
+  display: block;
+}
+
+.pixel-box.empty {
+  background-color: transparent;
+}
+
+/* --------------------------------------------------------------------------
+   Symmetrical Headline Lockup
+   -------------------------------------------------------------------------- */
+.headline-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1350px;
+  white-space: nowrap;
+}
+
+.headline-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.headline-side-left {
+  justify-content: flex-end;
+}
+
+.headline-side-right {
+  justify-content: flex-start;
+}
+
+.headline-text {
+  font-size: clamp(2.3rem, 4.4vw, 4.1rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  color: #111111;
+  line-height: 1.15;
+}
+
+.headline-center-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  will-change: width;
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Central 4x4 Grid Container */
+.central-grid-4x4 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+
+/* Individual square block inside the mosaic */
+.mosaic-tile {
+  position: absolute;
+  border-radius: 1.5px;
+  will-change: transform;
+  pointer-events: none;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.headline-hyphen {
+  font-size: clamp(2.3rem, 4.4vw, 4.1rem);
+  font-weight: 600;
+  color: #111111;
+  line-height: 1.15;
+  will-change: opacity;
+  padding: 0 1px;
+  transition: opacity 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+
+/* Tablet & Smaller Laptops (768px - 1024px, e.g. Laptop-1024) */
+@media (max-width: 1024px) {
+  .growth-viewport {
+    padding: 3.5vh 4vw;
+  }
+
+  .cards-row {
+    gap: 2rem;
+  }
+
+  .tile-cluster-placeholder {
+    width: 74px;
+    height: 74px;
+    margin-bottom: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 0.76rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-description {
+    font-size: 0.72rem;
+    max-width: 240px;
+    line-height: 1.42;
+  }
+
+  .headline-text,
+  .headline-hyphen {
+    font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+  }
+}
+
+/* Phablets & Mobile Landscape (480px - 767px) */
+@media (max-width: 767px) {
+  .growth-section {
+    height: 320vh;
+  }
+
+  .growth-viewport {
+    padding: 2.5vh 1.25rem;
+  }
+
+  .cards-row {
+    gap: 0.75rem;
+  }
+
+  .tile-cluster-placeholder {
+    width: 46px;
+    height: 46px;
+    margin-bottom: 0.45rem;
+  }
+
+  .card-title {
+    font-size: 0.58rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.2rem;
+    line-height: 1.25;
+  }
+
+  .card-description {
+    font-size: 0.58rem;
+    line-height: 1.35;
+    max-width: 100%;
+  }
+
+  .headline-text,
+  .headline-hyphen {
+    font-size: clamp(1.15rem, 3.8vw, 1.55rem);
+  }
+
+  .levers-badge {
+    padding: 3px 8px;
+    margin-bottom: 0.75rem;
+  }
+
+  .badge-text {
+    font-size: 0.6rem;
+  }
+
+  .pixel-box {
+    width: 3.5px;
+    height: 3.5px;
+  }
+
+  .corner-pixel-icon {
+    top: -4px;
+    right: -5px;
+  }
+}
+
+/* Small Mobile (< 480px, e.g. iPhone, Galaxy) */
+@media (max-width: 479px) {
+  .growth-section {
+    height: 280vh;
+  }
+
+  .growth-viewport {
+    padding: 2vh 0.6rem 2.5vh;
+  }
+
+  .cards-row {
+    gap: 0.4rem;
+  }
+
+  .tile-cluster-placeholder {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0.3rem;
+  }
+
+  .card-title {
+    font-size: 0.52rem;
+    letter-spacing: 0.01em;
+    margin-bottom: 0.15rem;
+    line-height: 1.2;
+  }
+
+  .card-description {
+    font-size: 0.48rem;
+    line-height: 1.22;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Headline sized so "Unlock high [grid] velocity growth." fits easily inside 320px-390px screens */
+  .headline-text,
+  .headline-hyphen {
+    font-size: clamp(0.9rem, 3.4vw, 1.15rem);
+  }
+
+  .levers-badge {
+    padding: 2px 6px;
+    margin-bottom: 0.45rem;
+  }
+
+  .badge-text {
+    font-size: 0.5rem;
+  }
+
+  .pixel-box {
+    width: 2.8px;
+    height: 2.8px;
+  }
+
+  .corner-pixel-icon {
+    top: -3px;
+    right: -4px;
+  }
+}
+
+/* Height-based adjustments for short screens */
+@media (max-height: 720px) {
+  .growth-viewport {
+    padding: 2.2vh 3vw;
+  }
+
+  .tile-cluster-placeholder {
+    margin-bottom: 0.35rem;
+  }
+
+  .levers-badge {
+    margin-bottom: 0.55rem;
+  }
+
+  .card-title {
+    margin-bottom: 0.15rem;
+  }
+
+  .card-description {
+    line-height: 1.25;
+  }
+}

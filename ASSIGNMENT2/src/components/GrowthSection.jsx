@@ -33,6 +33,7 @@ export const FEATURES = [
     row: 'top',
     title: 'CELEBRITY PERFORMANCE CREATIVES',
     tabTitle: 'CELEBRITY PERFORMANCE\nCREATIVES',
+    mobileTitle: 'CELEBRITY\nPERFORMANCE\nCREATIVES',
     description:
       'Unlock 200+ tested celebrity faces for conversion-led campaigns to 3X your user acquisition.',
     tiles: [
@@ -102,7 +103,7 @@ export default function GrowthSection() {
   // Fluid responsive metrics ensuring headline and 4x4 grid fit within any screen width
   const getResponsiveMetrics = (width) => {
     if (width <= 480) {
-      return { tileSize: 16, tileGap: 1.5, sideMargin: 8, minSlot: 12 }
+      return { tileSize: 30, tileGap: 2.2, sideMargin: 10, minSlot: 14 }
     } else if (width <= 768) {
       return { tileSize: 40, tileGap: 2.5, sideMargin: 14, minSlot: 16 }
     } else if (width <= 1024) {
@@ -215,6 +216,7 @@ export default function GrowthSection() {
 
   const topCards = FEATURES.filter((f) => f.row === 'top')
   const bottomCards = FEATURES.filter((f) => f.row === 'bottom')
+  const scrollDownOffset = windowWidth <= 480 ? 30 : 85
 
   return (
     <section className="growth-section" ref={containerRef}>
@@ -222,7 +224,7 @@ export default function GrowthSection() {
         {/* ---------------- Top 3 Feature Cards ---------------- */}
         <div className="cards-row cards-row-top">
           {topCards.map((feature) => (
-            <div key={feature.id} className="feature-card">
+            <div key={feature.id} className={`feature-card card-${feature.id}`}>
               <div
                 className="tile-cluster-placeholder"
                 ref={(el) => (cardTargetRefs.current[feature.id] = el)}
@@ -249,11 +251,11 @@ export default function GrowthSection() {
           {isTablet ? (
             /* Tablet Stacked Headline (scrolls down to center) + Grid Below */
             <div className="tab-headline-lockup">
-              {/* Animated Text Block: scrolls down from -85px to 0px (coming to vertical center) */}
+              {/* Animated Text Block: scrolls down from -85px/-60px to 0px (coming to vertical center) */}
               <div
                 className="tab-text-block"
                 style={{
-                  transform: `translate3d(0, ${(1 - animProgress) * -85}px, 0)`,
+                  transform: `translate3d(0, ${(1 - animProgress) * -scrollDownOffset}px, 0)`,
                 }}
               >
                 {/* "The levers" Badge */}
@@ -409,7 +411,7 @@ export default function GrowthSection() {
         {/* ---------------- Bottom 3 Feature Cards ---------------- */}
         <div className="cards-row cards-row-bottom">
           {bottomCards.map((feature) => (
-            <div key={feature.id} className="feature-card">
+            <div key={feature.id} className={`feature-card card-${feature.id}`}>
               <div
                 className="tile-cluster-placeholder"
                 ref={(el) => (cardTargetRefs.current[feature.id] = el)}

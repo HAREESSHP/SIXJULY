@@ -365,66 +365,121 @@
   }
 }
 
-/* Small Mobile (< 480px, e.g. iPhone, Galaxy) */
-@media (max-width: 479px) {
+/* Mobile Screen (<= 480px, e.g. Mobile Large 425px) */
+@media (max-width: 480px) {
   .growth-section {
-    height: 280vh;
+    height: 380vh;
   }
 
   .growth-viewport {
-    padding: 2vh 0.6rem 2.5vh;
+    padding: 2.5vh 1.25rem 2.8vh;
   }
 
-  .cards-row {
-    gap: 0.4rem;
+  /* Top 3 Cards in Diamond/Hexagonal Form: Brand Marketing Top-Center, Performance Left, Celebrity Right */
+  .cards-row-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "brand brand"
+      "perf celeb";
+    row-gap: 0.65rem;
+    column-gap: 0.75rem;
+    width: 100%;
+    max-width: 440px;
+    box-sizing: border-box;
+  }
+
+  /* Bottom 3 Cards in Diamond/Hexagonal Form: Social Media Left, AI Right, Ads Account Bottom-Center */
+  .cards-row-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "social ai"
+      "ads ads";
+    row-gap: 0.65rem;
+    column-gap: 0.75rem;
+    width: 100%;
+    max-width: 440px;
+    box-sizing: border-box;
+  }
+
+  /* Card Alignments matching mobile visual reference */
+  .card-brand-marketing {
+    grid-area: brand;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card-performance-creatives {
+    grid-area: perf;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .card-celebrity-performance {
+    grid-area: celeb;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .card-social-media {
+    grid-area: social;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .card-ai-marketing {
+    grid-area: ai;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .card-ads-management {
+    grid-area: ads;
+    align-items: center;
+    text-align: center;
   }
 
   .tile-cluster-placeholder {
-    width: 34px;
-    height: 34px;
-    margin-bottom: 0.3rem;
-  }
-
-  .card-title {
-    font-size: 0.52rem;
-    letter-spacing: 0.01em;
-    margin-bottom: 0.15rem;
-    line-height: 1.2;
-  }
-
-  .card-description {
-    font-size: 0.48rem;
-    line-height: 1.22;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  /* Headline sized so "Unlock high [grid] velocity growth." fits easily inside 320px-390px screens */
-  .headline-text,
-  .headline-hyphen {
-    font-size: clamp(0.9rem, 3.4vw, 1.15rem);
-  }
-
-  .levers-badge {
-    padding: 2px 6px;
+    width: 66px;
+    height: 66px;
     margin-bottom: 0.45rem;
   }
 
+  .card-title {
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+    color: #111111;
+    white-space: pre-line;
+  }
+
+  .card-description {
+    display: none !important;
+  }
+
+  .center-headline-container {
+    top: 54%;
+  }
+
+  .tab-headline-line {
+    font-size: clamp(1.65rem, 6.6vw, 2.15rem);
+  }
+
+  .tab-grid-4x4 {
+    margin-top: calc(1.5rem - 30px) !important;
+  }
+
+  .levers-badge {
+    padding: 3px 8px;
+    margin-bottom: 0.85rem;
+  }
+
   .badge-text {
-    font-size: 0.5rem;
-  }
-
-  .pixel-box {
-    width: 2.8px;
-    height: 2.8px;
-  }
-
-  .corner-pixel-icon {
-    top: -3px;
-    right: -4px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: none;
   }
 }
 

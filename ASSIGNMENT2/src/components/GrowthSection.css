@@ -233,11 +233,56 @@
 }
 
 /* --------------------------------------------------------------------------
+   Tablet Stacked Headline & Grid Lockup
+   -------------------------------------------------------------------------- */
+.tab-headline-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  pointer-events: none;
+  position: relative;
+}
+
+.tab-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  will-change: transform;
+}
+
+.tab-headline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.tab-headline-line {
+  font-size: clamp(2.1rem, 5.2vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: #111111;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.tab-grid-4x4 {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  margin-top: calc(1.75rem - 85px) !important;
+}
+
+/* --------------------------------------------------------------------------
    Responsive Breakpoints
    -------------------------------------------------------------------------- */
 
-/* Tablet & Smaller Laptops (768px - 1024px, e.g. Laptop-1024) */
-@media (max-width: 1024px) {
+/* Laptop-1024 / Small Laptops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
   .growth-viewport {
     padding: 3.5vh 4vw;
   }
@@ -269,61 +314,54 @@
   }
 }
 
-/* Phablets & Mobile Landscape (480px - 767px) */
-@media (max-width: 767px) {
+/* Tablet Screen (<= 768px) */
+@media (max-width: 768px) {
   .growth-section {
-    height: 320vh;
+    height: 380vh;
   }
 
   .growth-viewport {
-    padding: 2.5vh 1.25rem;
+    padding: 3.5vh 2rem 4vh;
   }
 
   .cards-row {
-    gap: 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 768px;
+    box-sizing: border-box;
   }
 
   .tile-cluster-placeholder {
-    width: 46px;
-    height: 46px;
-    margin-bottom: 0.45rem;
+    width: 86px;
+    height: 86px;
+    margin-bottom: 0.85rem;
   }
 
   .card-title {
-    font-size: 0.58rem;
-    letter-spacing: 0.02em;
-    margin-bottom: 0.2rem;
+    font-size: 0.88rem;
+    font-weight: 800;
     line-height: 1.25;
+    letter-spacing: 0.02em;
+    color: #111111;
+    white-space: pre-line;
   }
 
+  /* Descriptions hidden on tablet per design */
   .card-description {
-    font-size: 0.58rem;
-    line-height: 1.35;
-    max-width: 100%;
-  }
-
-  .headline-text,
-  .headline-hyphen {
-    font-size: clamp(1.15rem, 3.8vw, 1.55rem);
+    display: none !important;
   }
 
   .levers-badge {
-    padding: 3px 8px;
-    margin-bottom: 0.75rem;
+    padding: 4px 10px;
+    margin-bottom: 1.25rem;
   }
 
   .badge-text {
-    font-size: 0.6rem;
-  }
-
-  .pixel-box {
-    width: 3.5px;
-    height: 3.5px;
-  }
-
-  .corner-pixel-icon {
-    top: -4px;
-    right: -5px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: none;
   }
 }
 

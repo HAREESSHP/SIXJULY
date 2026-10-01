@@ -7,6 +7,7 @@ export const FEATURES = [
     id: 'performance-creatives',
     row: 'top',
     title: 'PERFORMANCE CREATIVES',
+    tabTitle: 'PERFORMANCE\nCREATIVES',
     description:
       "Access Vidrow's high-velocity ads creative engine, trained on 1000Cr+ of ad spends, delivering the highest win rate across the industry.",
     tiles: [
@@ -19,6 +20,7 @@ export const FEATURES = [
     id: 'brand-marketing',
     row: 'top',
     title: 'BRAND MARKETING',
+    tabTitle: 'BRAND\nMARKETING',
     description:
       'Create celebrity-led brand marketing campaigns, built for virality and conceptualised for standing out.',
     tiles: [
@@ -30,6 +32,7 @@ export const FEATURES = [
     id: 'celebrity-performance',
     row: 'top',
     title: 'CELEBRITY PERFORMANCE CREATIVES',
+    tabTitle: 'CELEBRITY PERFORMANCE\nCREATIVES',
     description:
       'Unlock 200+ tested celebrity faces for conversion-led campaigns to 3X your user acquisition.',
     tiles: [
@@ -44,6 +47,7 @@ export const FEATURES = [
     id: 'social-media',
     row: 'bottom',
     title: 'SOCIAL MEDIA MARKETING',
+    tabTitle: 'SOCIAL MEDIA\nMARKETING',
     description:
       "Build your niche, go viral and introduce a layer of social media validation through Vidrow's social media retainers.",
     tiles: [
@@ -57,6 +61,7 @@ export const FEATURES = [
     id: 'ads-management',
     row: 'bottom',
     title: 'ADS ACCOUNT MANAGEMENT',
+    tabTitle: 'ADS ACCOUNT\nMANAGEMENT',
     description:
       "Bring best practices in Google and Meta ads management with Vidrow's data and tech driven approach.",
     tiles: [
@@ -69,6 +74,7 @@ export const FEATURES = [
     id: 'ai-marketing',
     row: 'bottom',
     title: 'AI FOR MARKETING',
+    tabTitle: 'AI FOR\nMARKETING',
     description:
       "Plug and play with Vidrow's proprietary AI video ads tool, 'Double Down', built for scaling your winning ads at lower cost and faster TAT.",
     tiles: [
@@ -91,13 +97,14 @@ export default function GrowthSection() {
   const [windowWidth, setWindowWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200
   )
+  const isTablet = windowWidth <= 768
 
   // Fluid responsive metrics ensuring headline and 4x4 grid fit within any screen width
   const getResponsiveMetrics = (width) => {
     if (width <= 480) {
       return { tileSize: 16, tileGap: 1.5, sideMargin: 8, minSlot: 12 }
     } else if (width <= 768) {
-      return { tileSize: 24, tileGap: 2, sideMargin: 14, minSlot: 16 }
+      return { tileSize: 40, tileGap: 2.5, sideMargin: 14, minSlot: 16 }
     } else if (width <= 1024) {
       // Laptop-1024 / Tablet landscape: calibrated with optimal breathing room
       return { tileSize: 34, tileGap: 2, sideMargin: 20, minSlot: 22 }
@@ -228,7 +235,9 @@ export default function GrowthSection() {
                   transform: `translateY(${textY}px)`,
                 }}
               >
-                <h3 className="card-title">{feature.title}</h3>
+                <h3 className="card-title">
+                  {isTablet && feature.tabTitle ? feature.tabTitle : feature.title}
+                </h3>
                 <p className="card-description">{feature.description}</p>
               </div>
             </div>
@@ -237,49 +246,48 @@ export default function GrowthSection() {
 
         {/* ---------------- Center Headline & Central 4x4 Grid ---------------- */}
         <div className="center-headline-container">
-          {/* "THE LEVERS" Badge with exact corner pixel accent */}
-          <div
-            className="levers-badge"
-            style={{
-              opacity: badgeOpacity,
-              transform: `translateY(${badgeY}px)`,
-            }}
-          >
-            <span className="badge-text">THE LEVERS</span>
-            <div className="corner-pixel-icon" aria-hidden="true">
-              <div className="pixel-row">
-                <span className="pixel-box" />
-                <span className="pixel-box" />
-                <span className="pixel-box" />
-              </div>
-              <div className="pixel-row">
-                <span className="pixel-box empty" />
-                <span className="pixel-box" />
-                <span className="pixel-box" />
-              </div>
-              <div className="pixel-row">
-                <span className="pixel-box empty" />
-                <span className="pixel-box empty" />
-                <span className="pixel-box" />
-              </div>
-            </div>
-          </div>
+          {isTablet ? (
+            /* Tablet Stacked Headline (scrolls down to center) + Grid Below */
+            <div className="tab-headline-lockup">
+              {/* Animated Text Block: scrolls down from -85px to 0px (coming to vertical center) */}
+              <div
+                className="tab-text-block"
+                style={{
+                  transform: `translate3d(0, ${(1 - animProgress) * -85}px, 0)`,
+                }}
+              >
+                {/* "The levers" Badge */}
+                <div className="levers-badge">
+                  <span className="badge-text">The levers</span>
+                  <div className="corner-pixel-icon" aria-hidden="true">
+                    <div className="pixel-row">
+                      <span className="pixel-box" />
+                      <span className="pixel-box" />
+                      <span className="pixel-box" />
+                    </div>
+                    <div className="pixel-row">
+                      <span className="pixel-box empty" />
+                      <span className="pixel-box" />
+                      <span className="pixel-box" />
+                    </div>
+                    <div className="pixel-row">
+                      <span className="pixel-box empty" />
+                      <span className="pixel-box empty" />
+                      <span className="pixel-box" />
+                    </div>
+                  </div>
+                </div>
 
-          {/* Symmetrical 3-Column Lockup */}
-          <div className="headline-lockup">
-            <div className="headline-side headline-side-left">
-              <span className="headline-text">Unlock high</span>
-            </div>
+                <div className="tab-headline">
+                  <div className="tab-headline-line">Unlock high</div>
+                  <div className="tab-headline-line">velocity growth.</div>
+                </div>
+              </div>
 
-            <div
-              className="headline-center-slot"
-              style={{
-                width: `${currentSlotWidth}px`,
-              }}
-            >
+              {/* Central 4x4 Grid Container (Stationary below initial text position) */}
               <div
                 ref={gridContainerRef}
-                className="central-grid-4x4"
+                className="central-grid-4x4 tab-grid-4x4"
                 style={{
                   width: `${gridDimension}px`,
                   height: `${gridDimension}px`,
@@ -307,21 +315,95 @@ export default function GrowthSection() {
                   )
                 })}
               </div>
-
-              <span
-                className="headline-hyphen"
+            </div>
+          ) : (
+            /* Desktop/Laptop (Unchanged) */
+            <>
+              <div
+                className="levers-badge"
                 style={{
-                  opacity: hyphenOpacity,
+                  opacity: badgeOpacity,
+                  transform: `translateY(${badgeY}px)`,
                 }}
               >
-                -
-              </span>
-            </div>
+                <span className="badge-text">THE LEVERS</span>
+                <div className="corner-pixel-icon" aria-hidden="true">
+                  <div className="pixel-row">
+                    <span className="pixel-box" />
+                    <span className="pixel-box" />
+                    <span className="pixel-box" />
+                  </div>
+                  <div className="pixel-row">
+                    <span className="pixel-box empty" />
+                    <span className="pixel-box" />
+                    <span className="pixel-box" />
+                  </div>
+                  <div className="pixel-row">
+                    <span className="pixel-box empty" />
+                    <span className="pixel-box empty" />
+                    <span className="pixel-box" />
+                  </div>
+                </div>
+              </div>
 
-            <div className="headline-side headline-side-right">
-              <span className="headline-text">velocity growth.</span>
-            </div>
-          </div>
+              <div className="headline-lockup">
+                <div className="headline-side headline-side-left">
+                  <span className="headline-text">Unlock high</span>
+                </div>
+
+                <div
+                  className="headline-center-slot"
+                  style={{
+                    width: `${currentSlotWidth}px`,
+                  }}
+                >
+                  <div
+                    ref={gridContainerRef}
+                    className="central-grid-4x4"
+                    style={{
+                      width: `${gridDimension}px`,
+                      height: `${gridDimension}px`,
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    {ALL_TILES.map((tile) => {
+                      const delta = flightDeltas[tile.id] || { x: 0, y: 0 }
+                      const translateX = delta.x * animProgress
+                      const translateY = delta.y * animProgress
+
+                      return (
+                        <div
+                          key={tile.id}
+                          className="mosaic-tile"
+                          style={{
+                            backgroundColor: tile.color,
+                            width: `${tileSize}px`,
+                            height: `${tileSize}px`,
+                            top: `${tile.gridRow * step}px`,
+                            left: `${tile.gridCol * step}px`,
+                            transform: `translate3d(${translateX}px, ${translateY}px, 0)`,
+                          }}
+                        />
+                      )
+                    })}
+                  </div>
+
+                  <span
+                    className="headline-hyphen"
+                    style={{
+                      opacity: hyphenOpacity,
+                    }}
+                  >
+                    -
+                  </span>
+                </div>
+
+                <div className="headline-side headline-side-right">
+                  <span className="headline-text">velocity growth.</span>
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         {/* ---------------- Bottom 3 Feature Cards ---------------- */}
@@ -340,7 +422,9 @@ export default function GrowthSection() {
                   transform: `translateY(${textY}px)`,
                 }}
               >
-                <h3 className="card-title">{feature.title}</h3>
+                <h3 className="card-title">
+                  {isTablet && feature.tabTitle ? feature.tabTitle : feature.title}
+                </h3>
                 <p className="card-description">{feature.description}</p>
               </div>
             </div>

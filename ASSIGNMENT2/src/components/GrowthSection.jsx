@@ -109,8 +109,11 @@ export default function GrowthSection() {
     } else if (width <= 1024) {
       // Laptop-1024 / Tablet landscape: calibrated with optimal breathing room
       return { tileSize: 34, tileGap: 2, sideMargin: 20, minSlot: 22 }
+    } else if (width >= 2000) {
+      // 4K & Ultra-wide (2560px+): scaled up for large high-res displays
+      return { tileSize: 64, tileGap: 4, sideMargin: 44, minSlot: 62 }
     } else {
-      // Large Desktop (>1024px): calibrated for perfect optical kerning of hyphen
+      // Large Desktop (1025px - 1999px): calibrated for perfect optical kerning of hyphen
       return { tileSize: 42, tileGap: 2.5, sideMargin: 26, minSlot: 36 }
     }
   }

@@ -483,6 +483,81 @@
   }
 }
 
+/* 4K and Ultra-wide Screens (>= 2000px, e.g. 2560px, 3840px) */
+@media (min-width: 2000px) {
+  .growth-viewport {
+    padding: 5vh 5vw;
+  }
+
+  .cards-row {
+    max-width: 2000px;
+    gap: 5.5rem;
+  }
+
+  .headline-lockup {
+    max-width: 2150px;
+  }
+
+  .headline-text,
+  .headline-hyphen {
+    font-size: clamp(4.6rem, 4.4vw, 6.2rem);
+    font-weight: 750;
+    letter-spacing: -0.04em;
+  }
+
+  .tile-cluster-placeholder {
+    width: 136px;
+    height: 136px;
+    margin-bottom: 1.75rem;
+  }
+
+  .card-title {
+    font-size: 1.35rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    color: #111111;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-description {
+    font-size: 1.22rem;
+    font-weight: 600;
+    line-height: 1.55;
+    color: #434752;
+    max-width: 480px;
+  }
+
+  .levers-badge {
+    padding: 7px 18px;
+    margin-bottom: 2rem;
+  }
+
+  .badge-text {
+    font-size: 1.05rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+  }
+
+  .pixel-box {
+    width: 6px;
+    height: 6px;
+  }
+
+  .corner-pixel-icon {
+    top: -6.5px;
+    right: -8.5px;
+    gap: 2px;
+  }
+
+  .pixel-row {
+    gap: 2px;
+  }
+
+  .mosaic-tile {
+    border-radius: 2.5px;
+  }
+}
+
 /* Height-based adjustments for short screens */
 @media (max-height: 720px) {
   .growth-viewport {
